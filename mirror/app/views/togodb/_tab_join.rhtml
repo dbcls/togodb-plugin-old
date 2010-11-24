@@ -1,0 +1,65 @@
+<h3><%= as_("Join tables") %></h3>
+
+<div id="tab_join">
+<table class="luxury_search">
+<thead>
+<tr>
+  <th>Table left</th>
+  <th>Table right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>
+    <div id="table_left" style="width: 150px; height: 150px;">
+      <div id="table_left_name">
+        <%= render :partial => "table_name" , :locals => {:align => "left"}%>
+      </div>
+    </div>
+    <%#= drop_receiving_element :table_left,:hoverclass=>"hover", :url => {:action => 'table_columns',:align=>'left'} %>
+  </td>
+  <td>
+    <div id="table_right" style="width: 150px; height: 150px;">
+      <div id="table_right_name">
+      </div>
+    </div>
+    <%#= drop_receiving_element :table_right,:hoverclass=>"hover", :url => {:action => 'table_columns',:align=>'right'} %>
+  </td>
+</tr>
+<tr>
+  <td>
+   <div id="table_left_columns">
+    <%= render :partial => "table_columns", :locals => {:align => "left"} %>
+   </div>
+  </td>
+  <td><div id="table_right_columns"></div></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div id="join_message"></div>
+
+<%= submit_to_remote "join_button", "Join",
+        :submit => "tab_join",
+        :update => "through_tables",
+        :url => {:action => 'join_tables',:id=>@record.id}  %>
+
+<br/>
+<br/>
+
+<div id="through_tables">
+<%= render :partial => "through_tables" %>
+</div>
+
+<div id="message"></div>
+
+<script type="text/javascript">
+(function() {
+YAHOO.util.Event.onDOMReady(function() {
+  var left_slots = new YAHOO.util.DDTarget("table_left");
+  var right_slots = new YAHOO.util.DDTarget("table_right");
+});
+})();
+</script>

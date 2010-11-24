@@ -1,0 +1,114 @@
+<div>
+  <span style="color: #555555; font-size: 1em; font-weight: bold;"><%= as_("Column options") %></span>
+  <span style="position: relative; margin-left: 100px"><a id="add_column_btn" href="#" onclick="return false;">Add column</a></span>
+  <span style="position: relative; margin-left: 20px;"><a id="add_index_btn" href="#" onclick="return false;">Add index</a></span>
+</div>
+<div id="error" style="color: #FF0000;"><%= h flash[:error] %></div>
+<div id="notice" style="color: #0000FF;"><%= h flash[:notice] %></div>
+
+<%= render :partial => 'add_column_popup' %>
+<%= render :partial => 'add_index_popup' %>
+<div id="web_services_setup_popup" style="visibility: hidden; z-index: 1; position: absolute; left: 400px; top: 250px; padding: 20px; margin: 0px; border: 5px solid #C0C0FF; background-color: #FFFFFF"></div>
+
+<div id="tab_column" style="overflow:auto; position: relative; z-index: 0">
+<table cellpadding="0" cellspacing="0" class="luxury_search">
+<thead>
+<tr>
+  <th><%= as_("Name") %></th>
+  <th><%= as_("Type") %></th>
+  <th><%= as_("Label") %></th>
+  <th><%= as_("RecordName") %></th>
+  <th><%= as_("List") %></th>
+  <th><%= as_("Show") %></th>
+  <th><%= as_("Download") %></th>
+  <th><%= as_("Search") %></th>
+  <th><%= as_("AdvancedSearch") %></th>
+  <th><%= as_("Sanitize") %></th>
+  <th><%= as_("PrimaryKey") %></th>
+  <th><%= as_("Sort") %></th>
+  <th><%= as_("Index") %></th>
+  <th><%= as_("Web Service") %></th>
+</tr>
+</thead>
+<tbody>
+<%- columns = @record.enabled_columns -%>
+<%- j_tables = @record.through_tables -%>
+<%- columns.each do |column| -%>
+<%- column_type = column[:other_type].blank? ? column[:type] : column[:other_type] -%>
+<tr>
+  <td><%=h column.name %></td>
+  <td><%=h as_(column_type) %></td>
+  <td><%= togodb_text_field column, :label, :size=>20 %></td>
+  <td><%= togodb_radio_for_unique column, :record_name %></td>
+  <td><%= togodb_text_field column, :list_disp_order, :size => 3 %></td>
+  <td><%= togodb_text_field column, :show_disp_order, :size => 3 %></td>
+  <td><%= togodb_text_field column, :dl_column_order, :size => 3 %></td>
+  <td><%= togodb_check_box column, :action_search %></td>
+  <td><%= togodb_check_box column, :action_luxury %></td>
+  <td><%= togodb_check_box column, :sanitize %></td>
+  <td><%= togodb_radio_for_unique column, :primary_key %></td>
+  <td><%= togodb_radio_for_unique column, :sorting %></td>
+  <td><%= column.indexing? ? "Y" : "N" %></td>
+  <td>
+    <%= link_to_remote "configure...", :update => 'web_services_setup_popup',
+             :url => {:action => 'web_service_settings', :id => @record.id, :column_id => column.id},
+             :complete => "$('web_services_setup_popup').style.visibility = 'visible'" %>
+  </td>
+</tr>
+<%- end -%>
+<%- j_tables.each do |t|
+  if t.table1 == @record.name
+    # joined table is 'table2'
+    table_name = t.table2
+    list_disp_order_col_name = 'list_disp_order1'
+    list_disp_order_value = t.list_disp_order1
+    show_disp_order_col_name = 'show_disp_order1'
+    show_disp_order_value = t.show_disp_order1
+  else
+    # joined table is 'table1'
+    table_name = t.table1
+    list_disp_order_col_name = 'list_disp_order2'
+    list_disp_order_value = t.list_disp_order2
+    show_disp_order_col_name = 'show_disp_order2'
+    show_disp_order_value = t.show_disp_order2
+  end
+-%>
+  <td><%= h table_name %></td>
+  <td><%= h as_('joined_table') %></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><%= text_field_tag "throughs[#{t.id}][#{list_disp_order_col_name}]", list_disp_order_value, :size => 3 %>
+  <td><%= text_field_tag "throughs[#{t.id}][#{show_disp_order_col_name}]", show_disp_order_value, :size => 3 %>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+<%- end -%>
+</tbody>
+</table>
+
+<%= safe_link_to_remote image_tag('togodb/save.png', :alt => 'Save'), {:label => 'Save'}.merge(ajax(:url=>{:action=>"update_columns", :id=>@record}, :submit=>"tab_column")) %>
+</div>
+<script type="text/javascript">
+Event.observe("add_column_btn", "click", function() {
+  $("add_column_popup").style.visibility = "visible";
+  return false;
+});
+
+Event.observe("close_column_popup_btn", "click", function() {
+  $("add_column_popup").style.visibility = "hidden";
+});
+
+Event.observe("add_index_btn", "click", function() {
+  $("add_index_popup").style.visibility = "visible";
+  return false;
+});
+
+Event.observe("close_index_popup_btn", "click", function() {
+  $("add_index_popup").style.visibility = "hidden";
+});
+</script>

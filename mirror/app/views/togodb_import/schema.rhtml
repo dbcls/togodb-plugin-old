@@ -1,0 +1,13 @@
+<%- @message ||= as_("Header line") -%>
+
+Treat the first line as column names?
+
+<br/>
+<br/>
+
+<div style="overflow:auto;">
+<%= form_tag %><%= submit_tag as_("Yes") %><%= hidden_field_tag :header, true %></form><br/>
+<%= array2table(@head_entries, :class=>"luxury_search", :header=>true) %><br/>
+<%= form_tag %><%= submit_tag as_("No") %></form><br/>
+<%= array2table(@head_entries, :class=>"luxury_search") %><br/>
+</div>

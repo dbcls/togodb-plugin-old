@@ -1,0 +1,12 @@
+<%- @message ||= as_("Convert character code") -%>
+
+<ul>
+<li><%= form_tag %><%= submit_tag as_("convert by") %> nkf <%= text_field_tag "nkf_option", @nkf_option, :size=>60,:disabled=>1 %>
+<%= hidden_field_tag "nkf_option", @nkf_option %>
+</form></li>
+
+<!--
+<li><%= form_tag %><%= submit_tag as_("no needs to convert") %></form></li>
+-->
+</ul>
+

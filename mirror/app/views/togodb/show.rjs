@@ -1,0 +1,2 @@
+page[:workspace].replace :partial=>"show"
+#page << "Effect.BlindDown('workspace', {duration: 0.25})"

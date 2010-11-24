@@ -1,0 +1,19 @@
+<table class="header-actions" style="width:100%;">
+<tr>
+<td>
+  <%= render :partial=>"search" %>
+</td>
+<td>
+  <div class="header-actions">
+    <% if active_scaffold_config.action_links.any? { |link| link.type == :table } -%>
+    <% new_params = params_for(:action => :table) %>
+    <% active_scaffold_config.action_links.each :table do |link| -%>
+      <% next if controller.respond_to? link.security_method and !controller.send(link.security_method) -%>
+      <%= render_action_link(link, new_params) -%>
+    <% end -%>
+    <%= loading_indicator_tag(:action => :table) %>
+  <% end %>
+  </div>
+</td>
+</tr>
+</table>

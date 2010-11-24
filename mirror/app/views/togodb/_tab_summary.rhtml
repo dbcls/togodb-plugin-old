@@ -1,0 +1,102 @@
+<%- if @record.authorized_for?(:execute) -%>
+
+<h3><%= as_("Public access") %></h3>
+
+<% if @record.enabled? %>
+<%=  image_tag('togodb/1_3.png', :alt => 'Start service') %>
+<%=  safe_link_to_remote image_tag('togodb/3_1.png', :alt => 'Stop service'), ajax(:url=>{:action=>"stop_service", :id=>@record}) %>
+<% else %>
+<%=  safe_link_to_remote image_tag('togodb/1_1.png', :alt => 'Start service'), ajax(:url=>{:action=>"start_service", :id=>@record}) %>
+<%=  image_tag('togodb/3_3.png', :alt => 'Stop service') %>
+<% end %>
+
+<div style="height:20px"></div>
+
+<%- end # if @record.authorized_for?(:execute) -%>
+
+<table><tr>
+<td valign="top" style="text-align:left; background-color:transparent; border-width:0px">
+<h3><%= as_("Summary") %></h3>
+
+<table class="luxury_search">
+  <tr>
+    <th scope="row"><%= as_("Table name") %></th>
+    <td><%=h @record.name %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= as_("Service") %></th>
+
+    <td><%= service_status_for(@record) %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= as_("Page") %></th>
+    <td><%= page_column(@record) %></td>
+  </tr>
+  <tr>
+
+    <th scope="row"><%= as_("Column size") %></th>
+    <td><%= @record.active_record.columns.size %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= as_("Data size") %></th>
+    <td><%= @record.active_record.count %></td>
+  </tr>
+
+  <tr>
+    <th scope="row"><%= as_("Download") %></th>
+    <td><%= link_to_download(@record) %></td>
+  </tr>
+</table>
+</td>
+<td width="20" style="text-align:left; background-color:transparent; border-width:0px">&nbsp;</td>
+<td valign="top" style="text-align:left; background-color:transparent; border-width:0px">
+  <h3><%= as_("Settings") %></h3>
+<% form_for(:record, :html => {:id => 'tab_summary_form'}) do |f| %>
+  <table class="luxury_search">
+    <tr>
+      <th scope="row"><%= as_("Sort") %></th>
+      <td><%= f.select "sortable", [["True", true], ["False", false]] %></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="line-height:normal; background-color:transparent; padding:0px;">
+        <%= link_to_remote(image_tag('togodb/save2_default.png', :alt => 'Save', :style => 'margin-top:10px;'),
+                           :url => {:action => 'update_db_settings', :id => @record.id},
+                           :update => 'summary',
+                           :submit => 'tab_summary_form') -%>
+      </td>
+  </table>
+  <% if flash[:notice] %>
+    <div id="flash" style="color:green; border:1px green solid; padding:3px;">
+      <%= h(flash[:notice]) %>
+    </div>
+  <% end %>
+<% end -%>
+</td>
+</tr></table>
+
+<%- if @record.authorized_for?(:admin) -%>
+<%- if @record.imported? -%>
+<div id="reimport_db" style="float: left; width: 200px;">
+  <h3><%= as_("Re-import database") %></h3>
+  <%= link_to image_tag("togodb/reimport_button.jpg",
+                        :alt => "Re-import database",
+                        :onmouseover => "this.src='#{image_path("togodb/reimport_button_o.jpg")}'",
+                        :onmouseout => "this.src='#{image_path("togodb/reimport_button.jpg")}'"),
+              :controller => "togodb_reimport", :action => "table", :id => @record.id %>
+</div>
+<div id="destroy_db" style="margin-left: 200px;">
+  <h3><%= as_("Destroy database") %></h3>
+  <div id="uninstall">
+    <%= safe_link_to_remote image_tag("togodb/import_button.jpg",
+                                      :alt => "Destroy database",
+                                      :onmouseover => "this.src='#{image_path("togodb/import_button_o.jpg")}'",
+                                      :onmouseout => "this.src='#{image_path("togodb/import_button.jpg")}'"),
+                            :confirm => 'Destroy database OK ?',
+                            :url => {:action=>"uninstall", :id=>@record},
+                            :submit=>"uninstall" %>
+    <%= check_box_tag "droptable", "1", true %> <%= as_("Drop table") %>?
+  </div>
+  <div id="drop_message" style="color: #FF0000;"></div>
+</div>
+<%- end # if @record.imported? -%>
+<%- end # if @record.authorized_for?(:admin) -%>

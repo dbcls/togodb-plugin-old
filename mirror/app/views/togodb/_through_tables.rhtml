@@ -1,0 +1,15 @@
+<%- list = Togodb::Through.find(:all,:conditions=>["table1=? OR table2=?",@record.name,@record.name]) -%>
+
+<%- if list and list.size > 0 -%>
+Destroy through tables:
+<%- end -%>
+
+<%- list.each do |line| -%>
+<%-   through = Array.new -%>
+<%-   line.name.split(/_table/)[1..2].each do |id| -%>
+<%-     through << Togodb::Table.find(id).name -%>
+<%-   end -%>
+
+<%= link_to_remote through.join("-"),:url=>{:action=>"drop_throughs",:id=>line.id,:record=>@record.id} %>
+
+<%- end -%>

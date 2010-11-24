@@ -1,0 +1,31 @@
+<%- @message ||= as_("Data types") -%>
+
+<div  align=center style="overflow:auto;">
+
+<%= form_tag :action=>"create_table" %>
+
+<table cellpadding="4" cellspacing="0" class="luxury_search" width="90%">
+<tr>
+  <th align="left"><%= as_('Enable') %></th>
+  <th align="left"><%= as_('Sample data') %></th>
+  <th align="left"><%= as_('Column name') %></th>
+  <th align="left"><%= as_('Label') %></th>
+</tr>
+<%- @columns.each_with_index do |@column, i| %>
+  <%- row = "column-#{@column.id}" -%>
+<tr id="<%=row%>" class="enabled <%= @column.enabled? ? "" : "disabled"  %>">
+  <td><%= check_box_tag "#{@column.id}[enabled]", 1, @column[:enabled], :onchange=>"Element.toggleClassName('#{row}', 'disabled')" %></td>
+  <td><%= multibyte_truncate(h @samples[i]) %></td>
+  <td><%= text_field_tag "#{@column.id}[name]", @column[:name], :class=>@column[:column_name_error] %></td>
+  <td><%= text_field_tag "#{@column.id}[label]", @column[:label] %></td>
+</tr>
+<tr>
+  <td colspan="4" style="text-align:left;"><%= select_type_for(i+1) %> </td>
+</tr>
+<%- end -%>
+</table>
+<%= submit_tag as_("create table") %>
+
+</form>
+
+</div>

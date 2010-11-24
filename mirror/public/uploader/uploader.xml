@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Value between [] brackets, for example [#FFFFFF] shows default value which is used if this parameter is not set
+  This means, that if you are happy with this value, you can delete this line at all and reduce the file size.
+  
+  Explanation between () brackets shows the range or type of values you should use for this parameter
+  
+  NOTE: all background color values can contain several color codes separated by commas to produce gradient effect
+    I.e. #65AAF1,#438FDB,#598ABC
+-->
+
+<config>
+  
+  <!-- GENERAL SETTINGS -->
+  <maxsize>104857600</maxsize>                    <!-- [] (Number) a maximum allowed file size in bytes -->
+  
+  <filetypes>                                     <!-- this group contains allowed file types for file selection box. Leave blank for all file types -->
+    <type>
+      <description>All files</description>        <!-- [] (String) a file group description-->
+      <extension>*.*</extension>                  <!-- [*.*] (String) a filename pattern to filter to (semicolon separated). Example: *.jpg;*.gif;*.png -->
+      <mactype>*</mactype>                        <!-- [*] (String) an equivalent of extension for MACs. Example: JPEG;jp2_;GIFF -->
+    </type>
+    <type>
+      <description>Video Files</description>
+      <extension>*.avi;*.mpg;*.mov;*.wmv</extension>
+      <mactype>FLV</mactype>
+    </type>
+    <type>
+      <description>Image files</description>
+      <extension>*.jpg;*.gif;*.png</extension>
+      <mactype>JPEG;jp2_;GIFF</mactype>
+    </type>
+  </filetypes>
+  
+  <!-- VISUAL APPEARANCE SETTINGS -->
+  
+  <!-- main windown settings -->
+  <window>
+    <bgcolor>#FDE4DD</bgcolor>                    <!-- [] (hex color code) background color. Leave blank for transparency -->
+    <borderwidth>0</borderwidth>                  <!-- [0] (Number) width of window border in pixels -->
+    <bordercolor>#CCCCCC</bordercolor>            <!-- [#000000] (hex color code) windown border color. Ignored if borderwidth = 0 -->
+    <borderradius>10</borderradius>               <!-- [0] (Number) set to non-zero integer radius for rounded corners -->
+    <padding>5</padding>                         <!-- [0] (Number) window padding. Set to non-zero integer if you want controls shifted away from border -->
+    <alpha>100</alpha>                            <!-- [50] (0 - 100) set opacity for the foreground: 0 - completely transparent; 100 - completely opaque -->
+    <image></image>                               <!-- [] (path to an image or swf file) image or Flash movie to use as a background -->
+    <stretch>yes</stretch>                        <!-- [yes] (yes / no) should we stretch the image/movie to fit progress bar? -->
+  </window>
+  
+  <!-- layout settings -->
+  <layout>horizontal</layout>                     <!-- [horizontal] (horizontal / vertical) -->
+  
+  <!-- upload button settings -->
+  <upload>
+    <show>yes</show>                              <!-- [yes] (yes / no) show "Upload" button -->
+    <width></width>                               <!-- [button.defaults.width] (Number) a width in pixels -->
+    <height></height>                             <!-- [button.defaults.height (Number) a height in pixels -->
+  </upload>
+  
+  <!-- cancel button settings -->
+  <cancel>
+    <show>yes</show>                              <!-- [yes] (yes / no) show "Cancel" button (when uploading) -->
+    <width></width>                               <!-- [button.defaults.width] (Number) a width in pixels -->
+    <height></height>                             <!-- [button.defaults.height (Number) a height in pixels -->
+  </cancel>
+  
+  <!-- progress bar/info settings -->
+  <progress>
+    <width></width>                               <!-- [] (Number) width in pixels of the progress bar / file selector control. Leave blank for auto-size -->
+    <height></height>                             <!-- [] (Number) height in pixels of the progress bar / file selector control. Leave blank for auto-size -->
+    
+    <select>                                      <!-- file selector settings: -->
+      <bgcolor>#AAAAAA</bgcolor>                  <!-- [] (hex color code) background color. Leave blank for transparency -->
+      <borderwidth>0</borderwidth>                <!-- [0] (Number) width of border in pixels -->
+      <bordercolor>#888888</bordercolor>          <!-- [#000000] (hex color code) border color. Ignored if borderwidth = 0 -->
+      <borderradius>10</borderradius>             <!-- [0] (Number) set to non-zero integer radius for rounded corners -->
+      <padding>5</padding>                        <!-- [0] (Number) padding. Set to non-zero integer if you want text shifted away from border -->
+      <alpha>80</alpha>                           <!-- [50] (0 - 100) set opacity for the foreground: 0 - completely transparent; 100 - completely opaque -->
+      <button>yes</button>                         <!-- [no] (yes / no) wether to show file selection button. If not shown all of the selector control is clickable -->
+    </select>
+    
+    <background>                                  <!-- progress bar background settings: -->
+      <bgcolor>#AAAAAA</bgcolor>                  <!-- [] (hex color code) background color. Leave blank for transparency -->
+      <borderwidth>0</borderwidth>                <!-- [0] (Number) width of border in pixels -->
+      <bordercolor>#00FF00</bordercolor>          <!-- [#000000] (hex color code) border color. Ignored if borderwidth = 0 -->
+      <borderradius>10</borderradius>             <!-- [0] (Number) set to non-zero integer radius for rounded corners -->
+      <padding>5</padding>                        <!-- [0] (Number) padding. Set to non-zero integer if you want text shifted away from border -->
+      <alpha>80</alpha>                           <!-- [50] (0 - 100) set opacity for the foreground: 0 - completely transparent; 100 - completely opaque -->
+      <image></image>                             <!-- [] (path to an image or swf file) image or Flash movie to use as a background -->
+      <stretch>no</stretch>                       <!-- [yes] (yes / no) should we stretch the image/movie to fit progress bar? -->
+    </background>
+    
+    <bar>                                         <!-- progress bar foreground settings: -->
+      <bgcolor>#000000</bgcolor>                  <!-- [#000000] (hex color code) background color. Leave blank for transparency -->
+      <borderwidth>0</borderwidth>                <!-- [0] (Number) width of border in pixels -->
+      <bordercolor>#0000ff</bordercolor>          <!-- [#000000] (hex color code) border color. Ignored if borderwidth = 0 -->
+      <borderradius>10</borderradius>             <!-- [0] (Number) set to non-zero integer radius for rounded corners -->
+      <padding>5</padding>                        <!-- [0] (Number) padding. Set to non-zero integer if you want text shifted away from border -->
+      <alpha>50</alpha>                           <!-- [50] (0 - 100) set opacity for the foreground: 0 - completely transparent; 100 - completely opaque -->
+      <image></image>                             <!-- [] (path to an image or swf file) image or Flash movie to use as a foreground -->
+      <stretch>no</stretch>                       <!-- [yes] (yes / no) should we stretch the image/movie to fit progress bar? -->
+      <direction>right</direction>                   <!-- [right] (right / left / up / down) to which direction move progress bar. I.e. if set to "up", the progress bar will start filling up from the bottom and continue towards the top -->
+    </bar>
+    
+    <textformat>                                  <!-- text settings: -->
+      <color>#FFFFFF</color>                      <!-- [#FFFFFF] (hex color code) text color -->
+      <size>13</size>                             <!-- [13] (dont size) text size -->
+      <font>Verdana</font>                        <!-- [Verdana] (font name) use device fonts, such as Arial, Times New Roman, Tahoma, Verdana... -->
+      <bold>no</bold>                             <!-- [no] (yes / no) yse bold text font -->
+      <shadow>#444444</shadow>                    <!-- [] (hex color code) text shadow color. Leave blank for no shadow -->
+    </textformat>
+    
+    <errorformat>                                 <!-- error messages text settings: -->
+      <color>#FF4444</color>                      <!-- [#FF0000] (hex color code) text color -->
+      <size>13</size>                             <!-- [13] (dont size) text size -->
+      <font>Verdana</font>                        <!-- [Verdana] (font name) use device fonts, such as Arial, Times New Roman, Tahoma, Verdana... -->
+      <bold>no</bold>                             <!-- [no] (yes / no) yse bold text font -->
+      <shadow>#444444</shadow>                    <!-- [] (hex color code) text shadow color. Leave blank for no shadow -->
+    </errorformat>
+  </progress>
+  
+  <!-- general button appearance settings -->
+  <button>
+    
+    <defaults>                                    <!-- button default settings. These can be overriden in any of the following button states' definition -->
+      <width>100</width>                          <!-- [100] (width in pixels) may grow if the text does not fit in-->
+      <height>30</height>                         <!-- [25] (height in pixels) may grow if the text does not fit in-->
+      <borderradius>10</borderradius>             <!-- [0] (Number) set to non-zero integer radius for rounded corners -->
+      <bgcolor>#65AAF1,#438FDB,#598ABC</bgcolor>  <!-- [#65AAF1,#438FDB,#598ABC] (hex color code) background color -->
+      <crystal>#B1D4F8,#509AE6</crystal>          <!-- [] (hex color code) colors for the "Crystal" button effect -->
+      <borderwidth>1</borderwidth>                <!-- [0] (Number) a width of border in pixels -->
+      <bordercolor>#4A9BEF</bordercolor>          <!-- [#4A9BEF] (hex color value) border color -->
+      
+      <textformat>                                <!-- text settings for the button -->
+        <color>#FFFFFF</color>                    <!-- [#FFFFFF] (hex color code) text color -->
+        <size>13</size>                           <!-- [13] (dont size) text size -->
+        <font>Verdana</font>                      <!-- [Verdana] (font name) use device fonts, such as Arial, Times New Roman, Tahoma, Verdana... -->
+        <bold>no</bold>                           <!-- [no] (yes / no) yse bold text font -->
+        <shadow>#444444</shadow>                  <!-- [] (hex color code) text shadow color. Leave blank for no shadow -->
+      </textformat>
+    </defaults>
+    
+    <!-- separate settings for each button state -->
+    
+    <normal>
+			<bgcolor>#65AAF1,#438FDB,#598ABC</bgcolor>
+			<crystal>#B1D4F8,#509AE6</crystal>
+			<borderwidth>1</borderwidth>
+			<bordercolor>#4A9BEF</bordercolor>
+		</normal>
+		
+		<hover>
+			<bgcolor>#448BD4,#2873BE,#3C6FA2</bgcolor>
+			<crystal>#81ADDA,#3B82CA</crystal>
+			<borderwidth>1</borderwidth>
+			<bordercolor>#2F80D4</bordercolor>
+		</hover>
+    
+    <disabled>                                    <!-- disabled button. Does not react to any rollovers or click events -->
+      <bgcolor>#CACACA,#AAAAAA,#AAAAAA</bgcolor>
+      <crystal>#E9E9E9,#B9B9B9</crystal>
+      <borderwidth>1</borderwidth>
+      <bordercolor>#B6B6B6</bordercolor>
+      <textformat>
+        <color>#CCCCCC</color>
+        <shadow></shadow>
+      </textformat>
+    </disabled>
+  </button>
+  
+  <!-- 
+    Text prompt definitions for each language. Ie.:
+    <select_file>
+      <en>Select a File</en>
+      <fr>Sélectionner des fichiers</fr>
+      <de>Wählen Sie eine Datei</de>
+    </select_file>
+  -->
+  
+  <prompts>
+    <select_file>
+      <en>Select a File</en>
+    </select_file>
+    <too_big>
+      <en>Maximum size: {{size}}</en>
+    </too_big>
+    <disallowed>
+      <en>Selected file type is disallowed</en>
+    </disallowed>
+    <upload>
+      <en>Upload</en>
+    </upload>
+    <cancel>
+      <en>Cancel</en>
+    </cancel>
+    <uploading>
+      <en>Uploading... {{percent}}% ({{loaded}} / {{total}})</en>
+    </uploading>
+    <processing>
+      <en>Please wait! Processing...</en>
+    </processing>
+    <done>
+      <en>Done!</en>
+    </done>
+    <upload_err_not_selected>
+      <en>No file selected</en>
+    </upload_err_not_selected>
+    <upload_err_ini_size>
+      <en>File exceeds size limit set on the server</en>
+    </upload_err_ini_size>
+    <upload_err_form_size>
+      <en>The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form</en>
+    </upload_err_form_size>
+        <upload_err_partial>
+      <en>The uploaded file was only partially uploaded</en>
+    </upload_err_partial>
+    <upload_err_no_file>
+      <en>No file was uploaded</en>
+    </upload_err_no_file>
+        <upload_err_no_tmp_dir>
+      <en>Missing a temporary folder</en>
+    </upload_err_no_tmp_dir>
+        <upload_err_cant_write>
+      <en>Failed to write file to disk</en>
+    </upload_err_cant_write>
+        <upload_err_extension>
+      <en>File upload stopped by extension</en>
+    </upload_err_extension>
+    <upload_err_unauthorized>
+      <en>Unauthorized upload</en>
+    </upload_err_unauthorized>
+    <upload_err_move>
+      <en>An error occured while trying to move uploaded file</en>
+    </upload_err_move>
+  </prompts>
+</config>

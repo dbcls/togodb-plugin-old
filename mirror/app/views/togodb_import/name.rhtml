@@ -1,0 +1,14 @@
+<%- @message ||= as_("Database name") -%>
+
+<div style="clear: both">
+<div align="center">
+
+<%= form_tag %>
+<%= as_("New database") %>:
+<%= text_field_tag "table_name", params[:table_name], :size=>40 %>
+<%= submit_tag as_("OK") %>
+</form>
+
+</div>
+</div>
+

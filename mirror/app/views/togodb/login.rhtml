@@ -1,0 +1,28 @@
+<%- content_for(:side) do -%>
+Login
+<%= link_to "Logout", :action=>"logout" if login? %>
+<%- end %>
+
+<div id="login-pane">
+<%=flash[:error]%>
+<h2>OpenID</h2>
+<% form_tag :id=>"open_id" do %>
+  OpenID: <%= text_field_tag "openid_url", {}, {:size => 60} %>
+  <%= submit_tag 'Sign in', :disable_with => "Signing in&hellip;" %>
+<% end %>
+
+<form action="/togodb/login/open_id" method="GET"> 
+   OpenID 2.0:<span class="login-text">https://openid.dbcls.jp/</span>
+  <input type="hidden" name="openid_url" value="https://openid.dbcls.jp/">
+  <input type="hidden" name="openid.ns.sreg" value="http://openid.net/extensions/sreg/1.1"> 
+  <input type="submit" value="ログイン">
+</form>
+
+<h2>Local account</h2>
+<% form_tag :id=>"account" do %>
+  Username: <%= text_field_tag "login" %><br/>
+  Password: <%= password_field_tag %>
+  <%= submit_tag 'Sign in', :disable_with => "Signing in&hellip;" %>
+</div>
+<% end %>
+

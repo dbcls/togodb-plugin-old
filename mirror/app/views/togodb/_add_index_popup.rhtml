@@ -1,0 +1,23 @@
+<%- form_id = "togodb_admin_add_index_form" %>
+<div id="add_index_popup" style="visibility: hidden; z-index: 1; position: absolute; left: 550px; top: 200px; padding: 20px; margin: 0px; border: 5px solid #C0C0FF; background-color: #FFFFFF">
+  <div id="add_index_popup_message"></div>
+  <div align="center">
+<% form_remote_tag :url => {:controller => 'togodb', :action => 'add_index', :id => @record},
+    :update => 'column',
+    :after => "$('#{loading_indicator_id(:action => :togodb_admin_add_index)}').style.visibility = 'visible'; Form.disable('#{form_id}');",
+    :complete => "$('#{loading_indicator_id(:action => :togodb_admin_add_index)}').style.visibility = 'hidden'; Form.enable('#{form_id}');",
+    :html => {:id => form_id} do -%>
+    <table class="luxury_search">
+    <% @record.enabled_columns.each do |column| %>
+      <tr>
+        <td><% if column.indexing? %>&nbsp;<% else %><%= check_box_tag "column_ids[#{column.id}]", "1", false %><% end %></td>
+        <td style="text-align:left;"><%= column.name %>(<%= column.label %>)</td>
+      </tr>
+    <% end -%>
+    </table>
+    <%= submit_tag ' Add index ', :onclick => "if (!confirm('Add index ?')) return false; return true;" %>
+	<%= loading_indicator_tag :action => :togodb_admin_add_index %>
+    <input id="close_index_popup_btn" type="button" value=" Cancel " style="margin-left:20px;"/>
+<% end -%>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<%- @message ||= as_("Database name") -%>
+
+<div style="clear: both">
+<div align="center">
+
+
+<%= form_tag %>
+<%= as_("New database") %>:
+<%= text_field_tag "table_name", params[:table_name], :size=>30 %>
+<%= hidden_field_tag "dataset_id", params[:dataset_id] %>
+<%= hidden_field_tag "dataset_base_url", params[:dataset_base_url] %>
+<%= submit_tag as_("OK") %>
+</form>
+
+</div>
+</div>
+

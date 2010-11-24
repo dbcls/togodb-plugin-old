@@ -1,0 +1,3 @@
+The most up-to-date Uploader documentation can be found at this URL:
+
+http://wiki.solmetra.com/uploader

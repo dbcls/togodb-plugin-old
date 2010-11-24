@@ -1,0 +1,12 @@
+<%- if login? -%>
+     <li><a href="<%= url_for(:controller => 'togodb', :action => 'index') %>">Databases</a></li>
+<%- end -%>
+<%- if roled?(:import_table) -%>
+     <li><a href="<%= url_for(:controller => 'togodb_import', :action => 'name') %>">DB.new</a></li>
+<%- end -%>
+<%- if roled?(:superuser) -%>
+     <li><a href="<%= url_for(:controller => 'togodb', :action => 'scan') %>">DB.scan</a></li>
+<%- end -%>
+<%- if roled?(:superuser) -%>
+     <li><a href="<%= url_for(:controller => 'togodb_user') %>">Users</a></li>
+<%- end -%>

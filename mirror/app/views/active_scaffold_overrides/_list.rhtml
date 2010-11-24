@@ -1,0 +1,53 @@
+<%- up_loading_indicator_id = togodb_loading_indicator_id(:up) -%>
+<%- down_loading_indicator_id = togodb_loading_indicator_id(:down) -%>
+<%- b_display_per_page_selector = @page.pager.count > 15 -%>
+<%- b_display_list_pagination_links = @page.pager.number_of_pages >= 2 -%>
+<%- b_display_loading_indicator = b_display_per_page_selector || b_display_list_pagination_links -%>
+<%- b_display_webservice_column = @togodb_table.nil? ? false : @togodb_table.webservice_column? -%>
+<form>
+<div class="active-scaffold-footer">
+  <div class="active-scaffold-found"><span class="active-scaffold-records"><%= @page.pager.count -%></span> <%=as_('Found') %></div>
+  <div class="active-scaffold-pagination">
+    <%= render :partial => 'per_page_selector', :locals => {:position => :up, :indicator_id => up_loading_indicator_id} if b_display_per_page_selector %>
+    <%= loading_indicator_tag(:action => up_loading_indicator_id) if b_display_loading_indicator %>
+    <%= render :partial => 'list_pagination_links', :locals => {:current_page => @page, :position => :up, :indicator_id => up_loading_indicator_id} if b_display_list_pagination_links %>
+  </div>
+  <br clear="both" /><%# a hack for the Rico Corner problem %>
+</div>
+<table cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <%= render :partial => 'list_column_headings', :locals => {:b_display_webservice_column => b_display_webservice_column} %>
+    </tr>
+  </thead>
+  <tbody class="messages">
+    <tr>
+      <td colspan="<%= active_scaffold_config.list.columns.length + 1 -%>" class="messages-container">
+        <div id="<%= active_scaffold_messages_id -%>">
+          <%= render :partial => 'messages' %>
+        </div>
+        <p id="<%= empty_message_id %>" class="empty-message" <%= ' style="display:none;" ' unless @page.items.empty? %>>
+          <%= as_('No Entries') %>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+  <tbody class="records" id="<%= active_scaffold_tbody_id %>">
+    <% if !@records.empty? -%>
+      <%= render :partial => 'list_record', :collection => @page.items, :locals => {:hidden => false} %>
+      <% if active_scaffold_config.list.columns.any? {|c| c.calculation?} -%>
+        <%= render :partial => 'list_calculations' %>
+      <% end -%>
+    <% end -%>
+  </tbody>
+</table>
+<div class="active-scaffold-footer">
+  <div class="active-scaffold-found"><span class="active-scaffold-records"><%= @page.pager.count -%></span> <%=as_('Found') %></div>
+  <div class="active-scaffold-pagination">
+    <%= render :partial => 'per_page_selector', :locals => {:position => :down, :indicator_id => down_loading_indicator_id} if b_display_per_page_selector %>
+    <%= loading_indicator_tag(:action => down_loading_indicator_id) if b_display_loading_indicator %>
+    <%= render :partial => 'list_pagination_links', :locals => {:current_page => @page, :position => :down, :indicator_id => down_loading_indicator_id} if b_display_list_pagination_links %>
+  </div>
+  <br clear="both" /><%# a hack for the Rico Corner problem %>
+</div>
+</form>

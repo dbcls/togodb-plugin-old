@@ -1,0 +1,19 @@
+.active-scaffold td.actions tr td {
+  border: 0;
+}
+.active-scaffold table.user th label {
+  color : white;
+  padding : 2px;
+}
+.active-scaffold table.user td {
+  text-align: left;
+  padding : 2px;
+}
+.active-scaffold div.new-view,
+.active-scaffold div.edit-view {
+  background-color: #DDDDDD;
+  padding : 10px;
+}
+.active-scaffold div.form table.user input {
+  margin-left : 15px;
+}

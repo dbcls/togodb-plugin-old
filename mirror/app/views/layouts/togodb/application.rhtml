@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><%= togodb_html_title %></title>
+<%= javascript_include_tag :defaults %>
+<%= active_scaffold_includes %>
+<!-- Enable to use QuickLook by IFRAME
+<%= javascript_include_tag "yahoo-min.js" %>
+<%= javascript_include_tag "dom-min.js" %>
+<%= javascript_include_tag "event-min.js" %>
+<%= javascript_include_tag "dragdrop-min.js" %>
+-->
+<%= javascript_include_tag "quicklook.js" %>
+<%= stylesheet_link_tag "togodb/application.css" %>
+<!--[if lt IE 7]>
+<%= stylesheet_link_tag "togodb/ie7.css" %>
+<![endif]-->
+<% begin -%>
+<%= render :partial=>"html_head" %>
+<% rescue -%>
+<% end -%>
+</head>
+
+<body>
+
+<div id="popupdiv" class="popupdiv">
+ <div id = "setbar"  style="vertical-align:center;potision:absolute;top:0px;left:0px;height: 20px; scroll 0pt;background:url(/images/togodb/bg_th2.jpg) repeat-x;text-align:left;overflow:none;">
+  <span style="padding:6px;"><img src="/images/togodb/maru1.png" onclick="closepopup('popupdiv')" height="15px" width="15px" style="vertical-align:-3px;"></span>
+ </div>
+ <div id="popup" style="filter:alpha(opacity=95);opacity: 0.95;background-color:white;-moz-opacity:0.95;border-left:1px;overflow:auto;">
+<!-- Enable to use QuickLook by IFRAME
+ <script type="text/javascript">
+   // var dd1 = new YAHOO.util.DD("popupdiv", "myGroup");
+   // dd1.setHandleElId("setbar");
+ </script>
+ <iframe id="popup" class="active-scaffold"  frameborder="0" style="filter:alpha(opacity=87);opacity: 0.8;background-color:white;-moz-opacity:0.87;border:none">
+ </iframe>
+-->
+ </div>
+ <div style="background:url(/images/togodb/bottombar.png) repeat-x;height:15px;scroll 0pt"></div>
+</div>
+
+<div class="page-header"><%= render :partial=>"page_header" %></div>
+
+<%= yield %>
+
+<div class="page-footer"><%= render :partial=>"page_footer" %></div>
+
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+<ul>
+<%- files.sort.each do |path| -%>
+  <li><%=h Togodb.cleanpath(path) %>
+<%- end -%>
+</ul>

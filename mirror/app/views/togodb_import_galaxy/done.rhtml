@@ -1,0 +1,12 @@
+<%- @message ||= as_("Finished loading") -%>
+
+<div style="clear: both">
+<div align="center">
+
+<%= link_to image_tag('/images/togodb/bt_red.jpg', :alt=>"Database", :border=>0, :onMouseOver=>"this.src='/images/togodb/bo_red.jpg'", :onMouseOut=>"this.src='/images/togodb/bt_red.jpg'"), :controller=>"togodb" %>
+Back to the <%= link_to as_("Database Browser"), :controller=>"togodb" %>
+
+</div>
+</div>
+
+<div id="errors"></div>

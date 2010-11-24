@@ -1,0 +1,206 @@
+<div id="sidenavi">
+    <div id="icon">
+        <h2>Database Browser</h2>
+<%-
+# for paginate
+  current_page = @page
+  pagination_params = params_for(:action => 'update_table')
+  indicator_params = pagination_params.merge(:action => 'pagination')
+  previous_url = url_for(pagination_params.merge(:page => current_page.number - 1))
+  next_url = url_for(pagination_params.merge(:page => current_page.number + 1))
+  current_url = url_for(pagination_params.merge(:page => current_page.number))
+-%>
+
+<p id="<%= empty_message_id %>" class="empty-message" <%= ' style="display:none;" ' unless @page.items.empty? %>>
+  <%= as_('No Entries') %>
+</p>
+
+<script type="text/javascript">
+(function() {
+YAHOO.namespace('togodb');
+YAHOO.togodb.DDPlayer = function(id, sGroup, config) {
+    YAHOO.togodb.DDPlayer.superclass.constructor.apply(this, arguments);
+    this.initPlayer(id, sGroup, config);
+};
+YAHOO.extend(YAHOO.togodb.DDPlayer, YAHOO.util.DDProxy, {
+    TYPE: "DDPlayer",
+
+    initPlayer: function(id, sGroup, config) {
+        if (!id) { 
+            return; 
+        }
+
+        var el = this.getDragEl()
+        YAHOO.util.Dom.setStyle(el, "borderColor", "transparent");
+        YAHOO.util.Dom.setStyle(el, "opacity", 0.76);
+
+        this.isTarget = false;
+
+        this.originalStyles = [];
+
+        this.type = YAHOO.togodb.DDPlayer.TYPE;
+        this.slot = null;
+
+        this.startPos = YAHOO.util.Dom.getXY( this.getEl() );
+    },
+
+    startDrag: function(x, y) {
+        var Dom = YAHOO.util.Dom;
+
+        var dragEl = this.getDragEl();
+        var clickEl = this.getEl();
+
+        dragEl.innerHTML = clickEl.innerHTML;
+        dragEl.className = clickEl.className;
+
+        Dom.setStyle(dragEl, "cursor", "move");
+        Dom.setStyle(dragEl, "color",  Dom.getStyle(clickEl, "color"));
+        Dom.setStyle(dragEl, "textAlign", Dom.getStyle(clickEl, "textAlign"));
+    },
+
+    getTargetDomRef: function(oDD) {
+        if (oDD.player) {
+            return oDD.player.getEl();
+        } else {
+            return oDD.getEl();
+        }
+    },
+
+    onDrag: function(e) {
+        var dragEl = this.getDragEl();
+        YAHOO.util.Dom.setStyle(dragEl, "cursor", "move");
+    },
+
+    endDrag: function(e) {
+    },
+
+    resetTargets: function() {
+        var targets = YAHOO.util.DDM.getRelated(this, true);
+        for (var i = 0; i < targets.length; i++) {
+            var targetEl = this.getTargetDomRef(targets[i]);
+            var oldStyle = this.originalStyles[targetEl.id];
+            if (oldStyle) {
+                targetEl.className = oldStyle;
+            }
+        }
+    },
+
+    onDragDrop: function(mouseEvent, targetId) {
+        var oDD;
+        
+        if ("string" == typeof targetId) {
+            oDD = YAHOO.util.DDM.getDDById(targetId);
+        } else {
+            oDD = YAHOO.util.DDM.getBestMatch(targetId);
+        }
+
+        var el = this.getEl();
+
+        if (oDD.player) {
+            if (this.slot) {
+                if (YAHOO.util.DDM.isLegalTarget(oDD.player, this.slot) ) {
+                    this.slot.player = oDD.player;
+                    oDD.player.slot = this.slot;
+                } else {
+                    this.slot.player = null;
+                    oDD.player.slot = null
+                }
+            } else {
+                oDD.player.slot = null;
+            }
+        } else {
+            if (this.slot) {
+                this.slot.player = null;
+            }
+        }
+
+        YAHOO.util.Dom.setStyle(el, "borderColor", "#DCDADE");
+        this.resetTargets();
+
+        this.slot = oDD;
+        this.slot.player = this;
+
+        new Ajax.Request('<%= url_for(:controller => 'togodb', :action => 'table_columns') %>?align=' + oDD.id.substr('table_'.length), {asynchronous:true, evalScripts:true, parameters:'id=' + encodeURIComponent(el.id)});
+
+        YAHOO.util.Dom.setStyle(oDD.getEl(), "backgroundColor", "#FFFFFF");
+    },
+
+    swap: function(el1, el2) {
+        var Dom = YAHOO.util.Dom;
+        var pos1 = Dom.getXY(el1);
+        var pos2 = Dom.getXY(el2);
+        Dom.setXY(el1, pos2);
+        Dom.setXY(el2, pos1);
+    },
+
+    onDragOver: function(e, id) {
+        var oDD = YAHOO.util.DDM.getDDById(id);
+        var el = oDD.getEl();
+        YAHOO.util.Dom.setStyle(el, "backgroundColor", "#FDE273");
+    },
+
+    onDragOut: function (e, id) {
+        var oDD = YAHOO.util.DDM.getDDById(id);
+        var el = oDD.getEl();
+        YAHOO.util.Dom.setStyle(el, "backgroundColor", "#FFFFFF");
+    },
+
+    onDrag: function(e, id) {
+    }
+});
+})();
+</script>
+
+<ul class="records">
+<%- @page.items.each do |@record| -%>
+<% li_id = element_row_id(:action => :list, :id => @record.id) %>
+<li id="<%= li_id %>" class="record" onclick="<%= remote_function(:url => {:action => 'show', :id => @record}, :complete => ajax(:url => {:action => 'show', :id => @record})[:complete], :loading => ajax(:url => {:action => 'show', :id => @record})[:loading]) -%>"><%= render :partial => "list_item" %>
+<script type="text/javascript">
+var <%= li_id.gsub('-', '_') %> = new YAHOO.togodb.DDPlayer("<%= li_id %>", "default", {dragElId: "drag-player-proxy"});
+</script>
+</li>
+<%- end -%>
+</ul>
+
+<br clear="both" /><%# a hack for the Rico Corner problem %>
+
+<div class="active-scaffold-footer">
+  <div class="active-scaffold-found"><span class="active-scaffold-records"><%= @page.pager.count -%></span> <%=as_('Found') %></div>
+  <div class="active-scaffold-pagination">
+<%- if @page.prev? -%>
+  <%= link_to_remote( image_tag("/images/togodb/1leftarrow.png"),
+        { :url => pagination_params.merge(:page => @page.number - 1),
+          :after => "$('#{loading_indicator_id(:action => :pagination)}').style.visibility = 'visible';",
+          :complete => "$('#{loading_indicator_id(:action => :pagination)}').style.visibility = 'hidden';",
+          :failure => "ActiveScaffold.report_500_response('#{active_scaffold_id}')",
+          :update => active_scaffold_content_id,
+          :method => :get },
+        { :href => previous_url}) %>
+<%- end -%>
+    <%= render :partial => 'list_pagination_links', :locals => { :current_page => @page } unless @page.pager.number_of_pages < 2 %>
+<%- if @page.next? -%>
+  <%= link_to_remote( image_tag("/images/togodb/1rightarrow.png"),
+        { :url => pagination_params.merge(:page => @page.number + 1),
+          :after => "$('#{loading_indicator_id(:action => :pagination)}').style.visibility = 'visible';",
+          :complete => "$('#{loading_indicator_id(:action => :pagination)}').style.visibility = 'hidden';",
+          :failure => "ActiveScaffold.report_500_response('#{active_scaffold_id}')",
+          :update => active_scaffold_content_id,
+          :method => :get },
+        { :href => next_url}) %>
+<%- end -%>
+  </div>
+</div>
+
+<br clear="both" /><%# a hack for the Rico Corner problem %>
+      </div><!--iconEND-->
+    </div><!--sidenaviEND-->
+<div id="main">
+  <div class="mainSpace">
+     <div>
+        <img alt="loading indicator" style="display:none;" class="loading-indicator" id="autoloading" src="/images/togodb/indicator.gif">
+        <div style="float:right;"><%= login_information %></div>
+      </div>
+      <div id="workspace" class="active-scaffold"></div>
+   </div>
+</div>
+<div style="clear: both;"></div>

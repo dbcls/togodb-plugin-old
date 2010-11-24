@@ -1,0 +1,14 @@
+<% per_page_list = ["15", "30", "50", "100"] %>
+<% per_page = params[:limit].blank? ? active_scaffold_config.list.user.per_page.to_s : params[:limit] %>
+<% select_tag_id = "per_page_selector_#{position}" %>
+<%= select_tag select_tag_id,
+         options_for_select(per_page_list, per_page),
+         {:style => "font-size: 1em; letter-spacing: 0px;"} %>
+<%= observe_field select_tag_id,
+         {:method => :get,
+          :after => "$('#{loading_indicator_id(:action => indicator_id)}').style.visibility = 'visible';",
+          :complete => "$('#{loading_indicator_id(:action => indicator_id)}').style.visibility = 'hidden';",
+          :update => active_scaffold_content_id,
+          :on => 'change',
+          :url => params_for(:action => 'update_table').delete_if{|k, v| k == 'limit'}, :with => :limit}
+%>

@@ -1,0 +1,113 @@
+ul.selected-item {
+        padding: 3px 0;
+        margin: 2px;
+        font: bold 12px Verdana, sans-serif;
+}
+
+.selected-item li {
+        list-style: none;
+        margin: 0;
+        display: inline;
+}
+
+.selected-item li span {
+        padding         : 3px 0.5em;
+        margin-left     : 3px;
+        border          : 1px solid #778;
+        background      : #BBBBBB;
+        color           : #EEEEEE;
+}
+
+.selected-item .enabled span { background : white; color : black; }
+.selected-item span.enabled  { background : white; color : black; }
+
+.selected-item .current span, .selected-item span.current
+{ background : white; color : black; border : 2px solid red; }
+
+.selected-item .logical span {
+        border          : 0px;
+        color           : black;
+        background      : white;
+}
+
+.selected-item li a {
+        text-decoration: none;
+}
+
+
+
+.message {
+  font-size : 1em;
+  height : 1.5em;
+  text-align : center;
+  width : 700px;
+}
+
+.message .notice {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : #FAD163;
+}
+
+#message {
+  font-size : 1em;
+  height : 1.5em;
+  text-align : center;
+  width : 100%;
+  margin-top : 5px;
+}
+
+#message .nothing {
+}
+
+#message .notice {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : #FAD163;
+}
+
+#message .error {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : pink;
+}
+
+
+.usage {
+background-color:#F6F6F9;
+border:1px solid #999999;
+font-family:monospace;
+font-size:115%;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:bold;
+line-height:normal;
+padding:10px;
+}
+.usage pre {
+  margin: 0;
+}
+
+
+dl.alternative dd {
+  margin-bottom: 10px;
+}
+
+.popup .tips {
+  display         : none;
+  position        : absolute;
+}
+
+.popup a:hover {
+  position:relative;
+}
+
+.popup a:hover .tips{
+  display          : block;
+  top              : 30px;
+  left             : 20px;
+  white-space      : nowrap;
+  text-decoration  : none;
+  border           : 1px solid black;
+  color            : black;
+  background-color : #FFFFAA;
+}

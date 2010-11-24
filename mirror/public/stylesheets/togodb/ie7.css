@@ -1,0 +1,16 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+ }
+
+.popupdiv {
+  position: absolute;
+}
+
+#contents {
+  float: left;
+}

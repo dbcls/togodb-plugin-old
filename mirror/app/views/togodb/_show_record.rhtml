@@ -1,0 +1,24 @@
+<%- list = [
+  [:summary, image_tag("/images/togodb/button_dark_summary.png", :alt => "Overview", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_summary.png'", :onMouseOut => "this.src='/images/togodb/button_dark_summary.png'")],
+] -%>
+
+<%- if @record.authorized_for?(:admin)
+
+list += [
+  [:column, image_tag("/images/togodb/button_dark_column.png", :alt => "Column setting", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_column.png'", :onMouseOut => "this.src='/images/togodb/button_dark_column.png'")],
+  [:link, image_tag("/images/togodb/button_dark_link.png", :alt => "Link setting", :border => "0", :onMouserOver => "this.src='/images/togodb/button_light_link.png'", :onMouseOut => "this.src='/images/togodb/button_dark_link.png'")],
+  [:join, image_tag("/images/togodb/button_dark_join.png", :alt => "Join table", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_join.png'", :onMouseOut => "this.src='/images/togodb/button_dark_join.png'")],
+  [:html, image_tag("/images/togodb/button_dark_html.png", :alt => "HTML setting", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_html.png'", :onMouseOut => "this.src='/images/togodb/button_dark_html.png'")],
+  [:user, image_tag("/images/togodb/button_dark_user.png", :alt => "User setting", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_user.png'", :onMouseOut => "this.src='/images/togodb/button_dark_user.png'")],
+  [:metadata, image_tag("/images/togodb/button_dark_metadata.png", :alt => "Metadata setting", :border => "0", :onMouseOver => "this.src='/images/togodb/button_light_metadata.png'", :onMouseOut => "this.src='/images/togodb/button_dark_metadata.png'")],
+]
+
+end -%>
+
+<div class="importMain" id="importMain">
+
+<%= render_partial_tabs list %>
+
+</div>
+
+

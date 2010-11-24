@@ -1,0 +1,14 @@
+<%- @message ||= as_("Import data") -%>
+
+<div style="clear: both">
+<div align="center">
+
+<%= safe_link_to_remote image_tag('/images/togodb/import_button.jpg',:alt=>"startImporting",:onMouseOver=>"this.src='/images/togodb/import_button_o.jpg'", :onMouseOut=>"this.src='/images/togodb/import_button.jpg'"), :url=>{:action=>"import"} %>
+
+This step may take a while...
+
+</div>
+</div>
+
+<div id="workspace"></div>
+

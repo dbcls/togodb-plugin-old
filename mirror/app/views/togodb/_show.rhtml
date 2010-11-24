@@ -1,0 +1,17 @@
+<div id="workspace" class="active-scaffold">
+<% if @record.enabled? %>
+<%   url = url_for(:controller=>@record.singular_name) %>
+<%   d = link_to url, :controller=>@record.singular_name %>
+<% else %>
+<%   d = @record.to_label %>
+<% end %>
+<h2><%= as_("Settings for %s") % d %></h2>
+
+
+<div class="content">
+<%- if @record.exist? -%>
+  <%= render :partial=>"show_record" %>
+<%- else -%>
+  <%= render :partial=>"show_broken" %>
+<%- end -%>
+</div>

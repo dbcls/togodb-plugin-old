@@ -1,0 +1,26 @@
+<h4 class="user"><%=h @user.login %></h4>
+<div class="role">
+<table cellpadding="0" cellspacing="0" class="clm">
+<tr>
+  <th><%= as_("Admin") %></th>
+  <td><%= check_box :role, :role_admin %> All privileges</td>
+</tr>
+<tr>
+  <th><%= as_("Read") %></th>
+  <td><%= check_box :role, :role_read %> Read</td>
+</tr>
+<tr>
+  <th><%= as_("Write") %></th>
+  <td><%= check_box :role, :role_write %> Write</td>
+</tr>
+<tr>
+  <th><%= as_("Execute") %></th>
+  <td><%= check_box :role, :role_execute %> Execute</td>
+</tr>
+<tfoot>
+<tr><td colspan=2 align=center>
+<%= safe_link_to_remote as_("Update"), ajax(:url=>{:action=>"update_users", :id=>@record, :user=>@user}, :submit=>"user_role") %>
+</td></tr>
+</tfoot>
+</table>
+</div>

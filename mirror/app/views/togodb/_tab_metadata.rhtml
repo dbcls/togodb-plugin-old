@@ -1,0 +1,237 @@
+<% @metadata = Togodb::Metadata.find_or_create_by_table_id(@record.id) %>
+<% database_classes = Togodb::DatabaseClass.find(:all, :order => 'id') %>
+<% licence = @metadata.licence ? @metadata.licence : Togodb::Licence.new %>
+<% literatures = @metadata.literatures %>
+<% release_date = @metadata.release_date ? @metadata.release_date : nil %>
+<% update_date = @metadata.update_date ? @metadata.update_date : nil %>
+
+<table style="width: 630px; margin-top: 10px">
+<tr>
+  <td align="left" style="border: 0px; background: none"><h3><%= as_("Meta data") %></h3></td>
+  <td align="right" style="border: 0px; background: none"><%= link_to_remote image_tag('togodb/metadata_edit.png', :alt => 'Edit'), :update => 'metadata', :url => {:controller => 'togodb', :action => 'edit_metadata', :id => @record.id} %></td>
+</tr>
+</table>
+
+<div id="tab_metadata" style="overflow: auto;">
+
+<table cellpadding="0" cellspacing="0" style="width: 600px">
+<tr>
+  <th>データベース名</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.dbname %></td>
+</tr>
+<tr>
+  <th>作成機関名</th>
+</tr>
+<tr>
+  <td align="left">
+  <div id="c3">
+  <% @metadata.organizations.each do |organization| -%>
+    <div><%= organization.name %></div>
+  <% end %>
+  </div>
+  </td>
+</tr>
+<tr>
+  <th>連絡先</th>
+</tr>
+<tr>
+  <td align="left"><%= simple_format (h @metadata.contact) %></td>
+</tr>
+<tr>
+  <th>オリジナルサイトのURL</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.url %></td>
+</tr>
+<tr>
+  <th>統括サイトのURL</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.overall_url %></td>
+</tr>
+<tr>
+  <th>データベースカタログのURL</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.db_catalog_url %></td>
+</tr>
+<tr>
+  <th>データ分類表示</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.disp_data_class.nil? ? '' : @metadata.disp_data_class ? '○' : '× ' %></td>
+</tr>
+<tr>
+  <th>クエリ検索</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.query_search.nil? ? '' : @metadata.query_search ? '○' : '× ' %></td>
+</tr>
+<tr>
+  <th>Webサービス</th>
+</tr>
+<tr>
+  <td align="left">
+    <% if @metadata.web_service.nil? %>
+    <% else %>
+      <% if @metadata.web_service %>○ URL: <%= @metadata.web_service_url %>
+      <% else %>×
+      <% end %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <th>ユーザ登録</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.need_user_registration.nil? ? '' : @metadata.need_user_registration ? '○' : '× ' %></td>
+</tr>
+<tr>
+  <th>データの一括ダウンロードサイト</th>
+</tr>
+<tr>
+  <td align="left"><%= @metadata.data_download_url %></td>
+</tr>
+<tr>
+  <th>要約</th>
+</tr>
+<tr>
+  <td align="left"><%= simple_format (h @metadata.summary) %>
+  </td>
+</tr>
+<tr>
+  <th>データベース分類</th>
+</tr>
+<tr>
+  <td align="left">
+    <div id="database_classes">
+    <% @metadata.metadata_dbclasses.each do |dbclass| -%>
+      <div><%= database_classes[dbclass.database_class_id].name %></div>
+    <% end %>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th>生物種</th>
+</tr>
+<tr>
+  <td align="left">
+  <div id="taxonomies">
+  <% @metadata.taxonomies.each do |taxonomy| -%>
+    <div>
+    Taxonomy Name: <%= taxonomy.taxonomy_name %> [Taxonomy ID: <%= taxonomy.taxonomy_id %>]
+    </div>
+  <% end %>
+  </div>
+  </td>
+</tr>
+<tr>
+  <th>参照先データベース</th>
+</tr>
+<tr>
+  <td align="left"><%= simple_format (h @metadata.referenced_db) %></td>
+</tr>
+<tr>
+  <th>運用開始年月</th>
+</tr>
+<tr>
+  <td align="left">
+    <% unless release_date.nil? %>
+      <%= release_date.year %>年
+      <%= release_date.month %>月
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <th>最終更新年月</th>
+</tr>
+<tr>
+  <td align="left">
+    <% unless update_date.nil? %>
+      <%= update_date.year %>年
+      <%= update_date.month %>月
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <th>背景・プロジェクト</th>
+</tr>
+<tr>
+  <td align="left"><%= simple_format (h @metadata.background) %></td>
+</tr>
+<tr>
+  <th>データベースの特徴・有用性・活用用法</th>
+</tr>
+<tr>
+  <td align="left"><%= simple_format (h @metadata.feature) %></td>
+</tr>
+<tr>
+  <th>権利保有期間・利用許諾</th>
+</tr>
+<tr>
+  <td align="left">
+    <table border="0">
+      <tr>
+        <th class="licence_item">権利保有機関</th>
+        <td align="left"><%= simple_format (h licence.organization) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">データベースの再配布</th>
+        <td align="left"><%= togodb_metadata_yes_no_cloud(licence.redistributable) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">クレジット表示義務</th>
+        <td align="left"><%= togodb_metadata_yes_no_cloud(licence.disp_credit) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">データベースの改変</th>
+        <td align="left"><%= togodb_metadata_yes_no_cloud(licence.corruption) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">使用許諾表示義務</th>
+        <td align="left"><%= togodb_metadata_yes_no_cloud(licence.disp_licencing) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">営利目的での利用</th>
+        <td align="left"><%= togodb_metadata_yes_no_cloud(licence.commercial_use) %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">その他・特記事項</th>
+        <td align="left"><%= simple_format (h licence.special_affairs) %></td>
+      </tr>
+    </table>
+  </td>
+</tr>  
+<tr>
+  <th>関連文献</th>
+</tr>
+<tr>
+  <td align="left">
+    <div id="literatures">
+    <% literatures.each do |literature| %>
+    <table border="0">
+      <tr>
+        <th class="literature_item">文献名</th>
+        <td align="left"><%= simple_format(h literature.title) %></td>
+      </tr>
+      <tr>
+        <th class="literature_item">著者名</th>
+        <td align="left"><%= simple_format(h literature.author) %></td>
+      </tr>
+      <tr>
+        <th class="literature_item">雑誌名／掲載年月／号</th>
+        <td align="left"><%= literature.journal %></td>
+      </tr>
+      <tr>
+        <th class="literature_item">Pubmed ID</th>
+        <td align="left"><%= literature.pubmed_id %></td>
+      </tr>
+    </table>
+    <% end %>
+    </div>
+  </td>
+</tr>
+</table>
+</div>

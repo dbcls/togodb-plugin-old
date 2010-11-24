@@ -1,0 +1,34 @@
+#metadata th {
+  color: #f0f000;
+  background: #000080;
+  margin-left: 5px;
+}
+
+#metadata th.add_form {
+  color: #ffffff;
+  font-size: 0.7em;
+  background: #000000 url(/images/togodb/bg_th2.jpg) repeat-x scroll 0 0
+}
+
+#metadata th a {
+  background: none;
+  font-size: 1em;
+  display: inline;
+  padding: 0;
+}
+
+#metadata th.licence_item {
+  color: #ffffff;
+  background: #808080;
+}
+
+#metadata th.literature_item {
+  color: #ffffff;
+  background: #808080;
+}
+
+/* Popup help */
+div.bd {
+  font-size: 0.7em;
+  text-align: left;
+}

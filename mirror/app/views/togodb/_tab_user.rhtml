@@ -1,0 +1,9 @@
+<h3><%= as_("User roles") %></h3>
+
+<div id="tab_user">
+Login:
+<%= text_field_tag "login", "", :size=>40 %>
+<%= safe_link_to_remote as_("Search"), ajax(:url=>{:action=>"search_users", :id=>@record}, :submit=>"tab_user") %>
+
+<div id="user_role"></div>
+</div>

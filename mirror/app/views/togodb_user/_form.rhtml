@@ -1,0 +1,18 @@
+<div class="form" <%= 'style="display: none;"' if columns.collapsed -%>>
+
+<table class="user">
+<% columns.each :for => @record do |column| -%>
+<%   next if /read|write|execute/ === column.name.to_s # ignore AAB columns -%>
+<tr>
+  <th><label for="<%= "record_#{column.name}" %>"><%= column.label %></label></th>
+  <td>
+    <%= active_scaffold_input_for column %>
+    <% if column.description -%>
+      <span class="description"><%= column.description %></span>
+    <% end -%>
+  </td>
+</tr>
+<% end -%>
+</table>
+
+</div>

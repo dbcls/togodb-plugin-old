@@ -1,0 +1,377 @@
+<% @metadata = Togodb::Metadata.find_or_create_by_table_id(@record.id) %>
+<% database_classes = Togodb::DatabaseClass.find(:all, :order => 'id') %>
+<% licence = @metadata.licence %>
+<% literatures = @metadata.literatures %>
+<% release_date = @metadata.release_date ? @metadata.release_date : nil %>
+<% update_date = @metadata.update_date ? @metadata.update_date : nil %>
+
+<script type="text/javascript">
+  YAHOO.namespace("example.container");
+  YAHOO.example.container.tt1 = new YAHOO.widget.Tooltip("tt1", { context:"help1", text:"データベース名です" });
+  YAHOO.example.container.tt2 = new YAHOO.widget.Tooltip("tt2", { context:"help2", text:"データベースを作成した機関の名称です。<br />複数の機関で作成した場合は、関わった全ての機関を記入してください。" });
+
+  YAHOO.example.container.tt3 = new YAHOO.widget.Tooltip("tt3", { context:"help3", text:"データベースに関する問い合わせ先です。メールアドレス・電話番号・担当者名などを記入してください。" });
+  YAHOO.example.container.tt4 = new YAHOO.widget.Tooltip("tt4", { context:"help4", text:"データベースのオリジナルサイトのURLです。" });
+  YAHOO.example.container.tt5 = new YAHOO.widget.Tooltip("tt5", { context:"help5", text:"データベースのオリジナルサイトを統括するポータルサイトなどのURLを記入してください。" });
+  YAHOO.example.container.tt6 = new YAHOO.widget.Tooltip("tt6", { context:"help6", text:"オリジナルデータベースに関するデータベースカタログ（DBCLS提供）のURLです。記入は不要です。" });
+  YAHOO.example.container.tt7 = new YAHOO.widget.Tooltip("tt7", { context:"help7", text:"オリジナルサイトにおいて、データの分類によってデータをたどることができる場合（例えば説明図１のようなサイト）は「○」を、そうでなければ「×」を選択してください。" });
+  YAHOO.example.container.tt8 = new YAHOO.widget.Tooltip("tt8", { context:"help8", text:"オリジナルサイトにおいて、検索クエリを入力してデータを検索できる場合（例えば説明図２のようなサイト）は「○」を、そうでなければ「×」を選択してください。" });
+  YAHOO.example.container.tt9 = new YAHOO.widget.Tooltip("tt9", { context:"help9", text:"オリジナルサイトにおいて、SOAPやREST等のWebサービスを提供している場合は「○」を、そうでなければ「×」を選択してください。また、Webサービスについての説明ページがある場合は、そのURLを記入してください。" });
+  YAHOO.example.container.tt10 = new YAHOO.widget.Tooltip("tt10", { context:"help10", text:"オリジナルサイトにおいて、データベース中のデータにアクセスするためにユーザ登録が必要であれば「○」を、そうでなければ「×」を選択してください。" });
+  YAHOO.example.container.tt11 = new YAHOO.widget.Tooltip("tt11", { context:"help11", text:"オリジナルサイトにおいて、ユーザがデータベースのデータをHTTPまたはFTP経由で一括してダウンロードできる場合には、ダウンロードページのURLを記入してください。" });
+  YAHOO.example.container.tt12 = new YAHOO.widget.Tooltip("tt12", { context:"help12", text:"データベース内容の要約です。" });
+
+  YAHOO.example.container.tt13 = new YAHOO.widget.Tooltip("tt13", { context:"help13", text:"該当するものをNARカテゴリリストシートから選択します。複数選択が可能です。<br />NARカテゴリと、データベースの分類の例は、http://www3.oup.co.uk/nar/database/cap/　を参照してください。<br />「その他（自由記述）」を選択した場合は、具体的に記入してください。"});
+
+  YAHOO.example.container.tt14 = new YAHOO.widget.Tooltip("tt14", { context:"help14", text:"データベースが対象としている生物種のTaxonomy IDとTaxonomy Name（NCBI(http://www.ncbi.nlm.nih.gov/sites/entrez?db=taxonomy)<br />またはDDBJ(http://txsearch.ddbj.nig.ac.jp/top-j.html)のサイトで参照できます）を記入してください。<br />複数生物種の記入が可能です。<br />生物種が多すぎる場合は、Taxonomy Nameの記入欄に、対象生物種を参照できる資料名・URL等を記入してください。<br />Taxonomy IDを入力して、auto completeリンクをクリックするとTaxonomy Nameが自動的に入力されます。" });
+
+  YAHOO.example.container.tt15 = new YAHOO.widget.Tooltip("tt15", { context:"help15", text:"データベース中の各データからリンクされているデータベースを記入してください。データベースが複数ある場合は、全てのデータベースを記入してください。" });
+  YAHOO.example.container.tt16 = new YAHOO.widget.Tooltip("tt16", { context:"help16", text:"データベースの運用が始まった年・月を記入してください。" });
+  YAHOO.example.container.tt17 = new YAHOO.widget.Tooltip("tt17", { context:"help17", text:"最後にデータベースが更新された（単にページが更新されただけでなく、データ自体が更新された）年・月を記入してください。" });
+  YAHOO.example.container.tt18 = new YAHOO.widget.Tooltip("tt18", { context:"help18", text:"データベース構築の背景や、データベース構築を主に資金面で支援したプロジェクトについて記入してください。" });
+  YAHOO.example.container.tt19 = new YAHOO.widget.Tooltip("tt19", { context:"help19", text:"現在考えられるデータベースの有用性や活用方法です。データと検索・解析インタフェースなどの観点から記入してください。" });
+  YAHOO.example.container.tt20 = new YAHOO.widget.Tooltip("tt20", { context:"help20", text:"データベースに関する著作権などを保有する機関名や、利用許諾について右の各項目に記入してください。" });
+
+  YAHOO.example.container.tt20_1 = new YAHOO.widget.Tooltip("tt20_1", { context:"help20_1", text:"データベースの著作権を保有する機関名を記入してください。複数の機関で保有している場合は、保有する機関名を全て記入してください。" });
+  YAHOO.example.container.tt20_2 = new YAHOO.widget.Tooltip("tt20_2", { context:"help20_2", text:"ユーザがデータベースを再配布することが可能であれば「○」を、不可であれば「×」を選択してください。" });
+  YAHOO.example.container.tt20_3 = new YAHOO.widget.Tooltip("tt20_3", { context:"help20_3", text:"ユーザがデータベースを引用または再配布する際に、データベースのクレジットを表示する義務があれば「○」を、義務がなければ「×」を選択してください。" });
+  YAHOO.example.container.tt20_4 = new YAHOO.widget.Tooltip("tt20_4", { context:"help20_4", text:"ユーザがデータベースを改変して再配布することが可能であれば「○」を、不可であれば「×」を選択してください。" });
+  YAHOO.example.container.tt20_5 = new YAHOO.widget.Tooltip("tt20_5", { context:"help20_5", text:"ユーザがデータベースを改変する際に、このデータベースの利用許諾を継承する義務があれば「○」を、義務がなければ「×」を選択してください。" });
+  YAHOO.example.container.tt20_6 = new YAHOO.widget.Tooltip("tt20_6", { context:"help20_6", text:"ユーザがデータベースを営利目的で利用することが可能であれば「○」を、不可であれば「×」を選択してください。" });
+  YAHOO.example.container.tt20_7 = new YAHOO.widget.Tooltip("tt20_7", { context:"help20_7", text:"利用許諾において、上記項目にあてはまらないもの、例外等があれば記入してください。" });
+
+  YAHOO.example.container.tt21 = new YAHOO.widget.Tooltip("tt21", { context:"help21", text:"データベースに関連する論文などの文献があれば、文献名・著者名・発表年・所収雑誌名などを記入してください。<br />Pubmed IDを入力してauto completeリンクをクリックすると、文献名と著者名が自動的に入力されます。" });
+  YAHOO.example.container.tt21_1 = new YAHOO.widget.Tooltip("tt21_1", { context:"help21_1", text:"文献のタイトルです" });
+  YAHOO.example.container.tt21_2 = new YAHOO.widget.Tooltip("tt21_2", { context:"help21_2", text:"文献に記載されている著者を記入してください。" });
+  YAHOO.example.container.tt21_3 = new YAHOO.widget.Tooltip("tt21_3", { context:"help21_3", text:"「雑誌名/掲載年月/号」という書式で記入してください。" });
+  YAHOO.example.container.tt21_4 = new YAHOO.widget.Tooltip("tt21_4", { context:"help21_4", text:"文献にPubmed IDが付与されている場合は記入してください。" });
+
+</script>
+
+<form>
+<table style="width: 630px; margin-top: 10px">
+<tr>
+  <td align="left" style="border: 0px; background: none"><h3><%= as_("Meta data") %></h3></td>
+  <td align="right" style="border: 0px; background: none"><%= link_to_remote image_tag('togodb/metadata_show.png', :alt => 'Show'), :update => 'metadata', :url => {:controller => 'togodb', :action => 'show_metadata', :id => @record.id} %></td>
+</tr>
+</table>
+
+<div id="tab_metadata" style="overflow: auto;">
+
+<table cellpadding="0" cellspacing="0">
+<tr>
+  <th valign="middle">データベース名 <a href="#" id="help1"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_field :metadata, :dbname, :size => 80 %></td>
+</tr>
+<tr>
+  <th>作成機関名 <a href="#" id="help2"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <th class="add_form"><a href="javascript:addMetadataForm('organizations', 'new_organizations[]')">add form</a></th>
+</tr>
+<tr>
+  <td align="left">
+  <div id="organizations">
+  <% if @metadata.organizations.empty? %>
+      <%= text_field_tag "new_organizations[]", nil, :size => 80 %><br />
+  <% else %>
+    <% @metadata.organizations.each do |organization| -%>
+      <%= text_field_tag "organizations[#{organization.id}]", organization.name, :size => 80 %><br />
+    <% end %>
+  <% end %>
+  </div>
+  </td>
+</tr>
+<tr>
+  <th>連絡先 <a href="#" id="help3"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <%= text_area :metadata, :contact, :rows => 3, :cols => 80 %>
+  </td>
+</tr>
+<tr>
+  <th>オリジナルサイトのURL <a href="#" id="help4"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_field :metadata, :url, :size => 80  %></td>
+</tr>
+<tr>
+  <th>統括サイトのURL <a href="#" id="help5"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_field :metadata, :overall_url, :size => 80 %></td>
+</tr>
+<tr>
+  <th>データベースカタログのURL <a href="#" id="help6"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_field :metadata, :db_catalog_url, :size => 80 %></td>
+</tr>
+<tr>
+  <th>データ分類表示 <a href="#" id="help7"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <span><%= radio_button :metadata, :disp_data_class, 'true' %>○</span>
+    <span><%= radio_button :metadata, :disp_data_class, 'false' %>×</span>
+  </td>
+</tr>
+<tr>
+  <th>クエリ検索 <a href="#" id="help8"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <span><%= radio_button :metadata, :query_search, 'true' %>○</span>
+    <span><%= radio_button :metadata, :query_search, 'false' %>×</span>
+  </td>
+</tr>
+<tr>
+  <th>Webサービス <a href="#" id="help9"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <span><%= radio_button :metadata, :web_service, 'true' %>○</span>
+    URL: <%= text_field :metadata, :web_service_url, :size => 50 %>
+    <span><%= radio_button :metadata, :web_service, 'false' %>×</span>
+  </td>
+</tr>
+<tr>
+  <th>ユーザ登録 <a href="#" id="help10"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <span><%= radio_button :metadata, :need_user_registration, 'true' %>○</span>
+    <span><%= radio_button :metadata, :need_user_registration, 'false' %>×</span>
+  </td>
+</tr>
+<tr>
+  <th>データの一括ダウンロードサイト <a href="#" id="help11"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_field :metadata, :data_download_url, :size => 80 %></td>
+</tr>
+<tr>
+  <th>要約 <a href="#" id="help12"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <%= text_area :metadata, :summary, :rows => 3, :cols => 80 %>
+  </td>
+</tr>
+<tr>
+  <th>データベース分類 <a href="#" id="help13"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <th class="add_form"><a href="javascript:addMetadataForm('database_classes', '')">add form</a></th>
+</tr>
+<tr>
+  <td align="left">
+    <div id="database_classes">
+    <% if @metadata.metadata_dbclasses.empty? %>
+        <%= select_tag "new_dbclasses[]", options_from_collection_for_select(database_classes[0 .. 55], :id, :name, 0) %><br />
+        <%= text_field_tag "new_dbclass_names[]", nil, :size => 80 %><br />
+    <% else %>
+      <% @metadata.metadata_dbclasses.each do |dbclass| -%>
+        <% dababase_class_name = dbclass.database_class_id > 55 ? database_classes[dbclass.database_class_id].name : '' %>
+        <%= select_tag "dbclasses[#{dbclass.id}]", options_from_collection_for_select(database_classes[0 .. 55], :id, :name, dbclass.database_class_id < 55 ? dbclass.database_class_id : 55) %><br />
+        <%= text_field_tag "dbclass_names[#{dbclass.id}]", dababase_class_name, :size => 80 %><br />
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th>生物種 <a href="#" id="help14"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <th class="add_form"><a class="add_form" href="javascript:addMetadataForm('taxonomies', 'new_taxonomies[]')">add form</a></th>
+</tr>
+<tr>
+  <td align="left">
+  <div id="taxonomies">
+  <% if @metadata.taxonomies.empty? %>
+      Taxonomy Name: <%= text_field_tag "new_taxonomy[0][taxonomy_name]", nil, :size => 20 %>
+      Taxonomy ID: <%= text_field_tag "new_taxonomy[0][taxonomy_id]", nil, :size => 10 %>
+      <%= link_to_remote 'auto complete', :url => {:action => 'load_taxonomy'}, :with => "Form.Element.serialize('new_taxonomy[0][taxonomy_id]')", :complete => "tx = eval( '(' + request.responseText + ')' ); $('new_taxonomy[0][taxonomy_name]').value = tx['taxonomy_name']" %><br />
+  <% else %>
+    <% @metadata.taxonomies.each do |taxonomy| -%>
+      Taxonomy Name: <%= text_field_tag "taxonomy[#{taxonomy.id}][taxonomy_name]", taxonomy.taxonomy_name, :size => 20 %>
+      Taxonomy ID: <%= text_field_tag "taxonomy[#{taxonomy.id}][taxonomy_id]", taxonomy.taxonomy_id, :size => 10 %>
+      <%= link_to_remote 'auto complete', :url => {:action => 'load_taxonomy'}, :with => "Form.Element.serialize('taxonomy[#{taxonomy.id}][taxonomy_id]')", :complete => "tx = eval( '(' + request.responseText + ')' ); $('taxonomy[#{taxonomy.id}][taxonomy_name]').value = tx['taxonomy_name']" %><br />
+    <% end %>
+  <% end %>
+  </div>
+  </td>
+</tr>
+<tr>
+  <th>参照先データベース <a href="#" id="help15"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_area :metadata, :referenced_db, :rows => 2, :cols => 80 %></td>
+</tr>
+<tr>
+  <th>運用開始年月 <a href="#" id="help16"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <%= select_year release_date, :start_year => 1990, :end_year => 2020, :prefix => 'release', :include_blank => true %>年
+    <%= select_month release_date, :prefix => 'release', :use_month_numbers => true, :include_blank => true %>月
+  </td>
+</tr>
+<tr>
+  <th>最終更新年月 <a href="#" id="help17"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <%= select_year update_date, :start_year => 1990, :end_year => 2020, :prefix => 'update', :include_blank => true %>年
+    <%= select_month update_date, :prefix => 'update', :use_month_numbers => true, :include_blank => true %>月
+  </td>
+</tr>
+<tr>
+  <th>背景・プロジェクト <a href="#" id="help18"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_area :metadata, :background, :rows => 2, :cols => 80 %></td>
+</tr>
+<tr>
+  <th>データベースの特徴・有用性・活用用法 <a href="#" id="help19"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left"><%= text_area :metadata, :feature, :rows => 2, :cols => 80 %></td>
+</tr>
+<tr>
+  <th>権利保有機関・利用許諾 <a href="#" id="help20"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <td align="left">
+    <table border="0">
+      <tr>
+        <th class="licence_item">権利保有機関 <a href="#" id="help20_1"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td><%= text_area :licence, :organization, :object => licence, :rows => 2, :cols => 60 %></td>
+      </tr>
+      <tr>
+        <th class="licence_item">データベースの再配布 <a href="#" id="help20_2"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left">
+          <span><%= radio_button :licence, :redistributable, '1', :object => licence %>○</span>
+          <span><%= radio_button :licence, :redistributable, '0', :object => licence %>×</span>
+          <span><%= radio_button :licence, :redistributable, '-1', :object => licence %>不明</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="licence_item">クレジット表示義務 <a href="#" id="help20_3"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left">
+          <span><%= radio_button :licence, :disp_credit, '1', :object => licence %>○</span>
+          <span><%= radio_button :licence, :disp_credit, '0', :object => licence %>×</span>
+          <span><%= radio_button :licence, :disp_credit, '-1', :object => licence %>不明</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="licence_item">データベースの改変 <a href="#" id="help20_4"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left">
+          <span><%= radio_button :licence, :corruption, '1', :object => licence %>○</span>
+          <span><%= radio_button :licence, :corruption, '0', :object => licence %>×</span>
+          <span><%= radio_button :licence, :corruption, '-1', :object => licence %>不明</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="licence_item">使用許諾表示義務 <a href="#" id="help20_5"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left">
+          <span><%= radio_button :licence, :disp_licencing, '1', :object => licence %>○</span>
+          <span><%= radio_button :licence, :disp_licencing, '0', :object => licence %>×</span>
+          <span><%= radio_button :licence, :disp_licencing, '-1', :object => licence %>不明</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="licence_item">営利目的での利用 <a href="#" id="help20_6"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left">
+          <span><%= radio_button :licence, :commercial_use, '1', :object => licence %>○</span>
+          <span><%= radio_button :licence, :commercial_use, '0', :object => licence %>×</span>
+          <span><%= radio_button :licence, :commercial_use, '-1', :object => licence %>不明</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="licence_item">その他・特記事項 <a href="#" id="help20_7"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+        <td align="left"><%= text_area :licence, :special_affairs, :object => licence, :rows => 2, :cols => 60 %></td>
+      </tr>
+    </table>
+  </td>
+</tr>  
+<tr>
+  <th>関連文献 <a href="#" id="help21"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+</tr>
+<tr>
+  <th class="add_form"><a class="add_form" href="javascript:addMetadataForm('literatures', 'new_literatures[]')">add form</a></th>
+</tr>
+<tr>
+  <td align="left">
+    <div id="literatures">
+    <% if literatures.empty? %>
+        <table border="0">
+          <tr>
+            <th class="literature_item">文献名 <a href="#" id="help21_1"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+            <td align="left"><%= text_area_tag "new_literature[0][title]", nil, :rows => 2, :cols => 60 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">著者名 <a href="#" id="help21_2"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+            <td align="left"><%= text_area_tag "new_literature[0][author]", nil, :rows => 2, :cols => 60 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">雑誌名／掲載年月／号 <a href="#" id="help21_3"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+            <td align="left"><%= text_field_tag "new_literature[0][journal]", nil, :size => 50 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">Pubmed ID <a href="#" id="help21_4"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a></th>
+            <td align="left"><%= text_field_tag "new_literature[0][pubmed_id]", nil, :size => 20 %> <%= link_to_remote 'auto complete', :url => {:action => 'load_pubmed'}, :with => "Form.Element.serialize('new_literature[0][pubmed_id]')" %></td>
+          </tr>
+        </table>
+    <% else %>
+      <% literatures.each_with_index do |literature, id| %>
+        <% pubmed_form_id = "pubmed_form#{id}" %>
+        <table border="0">
+          <tr>
+            <th class="literature_item">文献名
+            <% if id == 0 %>
+            <a href="#" id="help21_1"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a>
+            <% end %>
+            </th>
+            <td align="left"><%= text_area_tag "literature[#{literature.id}][title]", literature.title, :rows => 2, :cols => 60 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">著者名
+            <% if id == 0 %>
+            <a href="#" id="help21_2"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a>
+            <% end %>
+            </th>
+            <td align="left"><%= text_area_tag "literature[#{literature.id}][author]", literature.author, :rows => 2, :cols => 60 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">雑誌名／掲載年月／号
+            <% if id == 0 %>
+            <a href="#" id="help21_3"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a>
+            <% end %>
+            </th>
+            <td align="left"><%= text_field_tag "literature[#{literature.id}][journal]", literature.journal, :size => 50 %></td>
+          </tr>
+          <tr>
+            <th class="literature_item">Pubmed ID
+            <% if id == 0 %>
+            <a href="#" id="help21_4"><%= image_tag('togodb/24-comment-square-question.png', :alt => '') %></a>
+            <% end %>
+            </th>
+            <td align="left"><%= text_field_tag "literature[#{literature.id}][pubmed_id]", literature.pubmed_id, :size => 20 %> <%= link_to_remote 'auto complete', :url => {:action => 'load_pubmed'}, :with => "Form.Element.serialize('literature[#{literature.id}][pubmed_id]')" %></td>
+          </tr>
+        </table>
+      <% end %>
+    <% end %>
+    </div>
+  </td>
+</tr>
+</table>
+
+<%= safe_link_to_remote image_tag('togodb/save.png', :alt => 'Save'), {:label => 'Save'}.merge(ajax(:update => 'metadata', :url => {:action => "update_metadata", :id => @record}, :submit => "tab_metadata")) %>
+
+</form>
+</div>

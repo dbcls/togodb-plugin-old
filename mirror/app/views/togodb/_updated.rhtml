@@ -1,0 +1,13 @@
+<%= as_("Updated") %>
+
+<%- if @record.enabled? -%>
+<dl>
+<dt><%= as_("Page") %></dt>
+<dd><%= page_column(@record) %></dd>
+</dl>
+<%- else -%>
+<dl>
+<dt><%= as_("Enable it?") %></dt>
+<dd><%= service_link_for(@record) %></dd>
+</dl>
+<%- end -%>

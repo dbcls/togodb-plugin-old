@@ -1,0 +1,23 @@
+<h3><%= as_("HTML setting") %></h3>
+
+<dl id="tab_html">
+
+<%- @setting = @record.setting -%>
+<dt><%= as_("Label") %></dt>
+<dd><%= text_field :setting, :label %></dd>
+
+<dt><%= as_("Title") %></dt>
+<dd><%= text_field :setting, :html_title %></dd>
+
+<dt><%= as_("Included in the &lt;HEAD&gt; tag") %></dt>
+<dd><%= text_area :setting, :html_head, :rows => 30, :style => "height:auto; font-size:10pt; line-height:1em; width:100%" %></dd>
+
+<dt><%= as_("Page header") %></dt>
+<dd><%= text_area :setting, :page_header, :rows => 5, :style => "height:auto; font-size:10pt; line-height:1em; width:100%" %></dd>
+
+<dt><%= as_("Page footer") %></dt>
+<dd><%= text_area :setting, :page_footer, :rows => 5, :style => "height:auto; font-size:10pt; line-height:1em; width:100%" %></dd>
+
+<%= safe_link_to_remote image_tag('togodb/save.png', :alt => 'Save'), {:label => 'Save'}.merge(ajax(:url=>{:action=>"update_setting", :id=>@record}, :submit=>"tab_html")) %>
+
+</dl>

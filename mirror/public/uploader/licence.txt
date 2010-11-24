@@ -1,0 +1,26 @@
+*************************************************************************
+Solmetra grants you the right to use this version of Flash Uploader for 
+personal AND commercial uses as long as you maintain compliance to the
+following guidelines:
+
+1) No portion of this component or complimentary files are modified;
+2) No copyrights are removed from this component or its files;
+3) Link to Flash Uploader website (www.solmetra.com/flash_uploader) is 
+   not removed, hidden or somehow tricked into invisibility;
+4) Flash Uploader is not used in a redistributable software/website 
+   building component or control.
+
+You may not redistribute, sublicense or sell this program without written
+permission of Solmetra.
+
+A commercial version (without link) is available for a modest fee at 
+Solmetra's website: http://www.solmetra.com/flash_uploader/
+
+If you want to use Flash Uploader in a redistributable software/website 
+building component or control please contact Solmetra.
+
+This software is provided without warranty.
+
+Please use Solmetra Support FOrums for any support queries:
+http://forums.solmetra.com/
+*************************************************************************

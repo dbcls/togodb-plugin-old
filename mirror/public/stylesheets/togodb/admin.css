@@ -1,0 +1,841 @@
+#togodb .margin5  { margin :  5px; }
+#togodb .margin10 { margin : 10px; }
+#togodb .margin20 { margin : 20px; }
+
+#togodb .usage { padding :  5px; }
+
+#togodb .lefting {
+float:left;
+vertical-align:middle;
+}
+
+#togodb .clear {
+clear:both;
+}
+
+
+#togodb tr.disabled td,
+#togodb tr.disabled td.sorted {
+  background-color: #BBBBBB;
+}
+#schema_column-content table { width : auto; }
+#schema-tbody div#togodb-footer { display : none; }
+
+
+#togodb h2 {
+  border-color   : #CC0000;
+  border-style   : solid;
+  border-width   : 0pt 0pt 1px;
+  display        : block;
+  letter-spacing : 2px;
+  padding        : 2px 0px;
+  margin         : 0;
+  color          : #555555;
+  font           : bold 160% arial, sans-serif;
+}
+
+.hover {
+  background-color: #fde273;
+}
+
+ul.records {
+  list-style: none;
+}
+
+ul.records li.record {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #DCDADE;
+  text-align: center;
+  cursor: pointer;
+  display:inline;
+}
+ul.records li.record:hover {
+  background-color: #FFFFCC;
+}
+
+/*
+ul.records li.record a {
+  display: block;
+  background-color: #F0C0C0;
+  width: 130px;
+  height :150px;
+  text-align: center;
+  font-weight: bold;
+  border:1px solid #DCDADE;
+}
+*/
+
+div.join {
+  float:left;
+  display:block;
+  height : 100%;
+  background:url(/images/togodb/file.png) no-repeat center 20px;
+  width :150px;
+  height :150px;
+  text-align: center;
+  font-weight: bold;
+  border:1px solid #DCDADE;
+}
+
+div.join_enabled {
+  float:left;
+  display:block;
+  height : 100%;
+  background:url(/images/togodb/html.png) no-repeat center 20px;
+  width :150px;
+  height :150px;
+  text-align: center;
+  font-weight: bold;
+  border:1px solid #DCDADE;
+}
+
+ul.records li.record div.enabled a {
+  background:url(/images/togodb/html.png) no-repeat center 20px;
+}
+
+ul.records li.record div.broken a {
+  background:url(/images/togodb/file_broken.png) no-repeat center 20px;
+}
+
+ul.records li.record div.prev a {
+  background:url(/images/togodb/1leftarrow.png) no-repeat center;
+  border:0px;
+  width :50px;
+}
+
+ul.records li.record div.next a {
+  background:url(/images/togodb/1rightarrow.png) no-repeat center;
+  border:0px;
+  width :50px;
+}
+
+ul.records li.record a:hover,
+ul.records li.record div.enabled a:hover,
+ul.records li.record div.broken  a:hover,
+ul.records li.record div.prev    a:hover,
+ul.records li.record div.next    a:hover,
+ul.records li.shown div.enabled a,
+ul.records li.shown div.broken  a,
+ul.records li.shown a {
+  background-color: #FFFFCC;
+}
+
+#togodb .clear {
+  clear : both;
+}
+
+#togodb dl.preview dt {
+  position:relative;
+}
+
+
+#luxury_search table {
+  border:1px solid black;
+  border-collapse:collapse;
+  border-spacing:0pt;
+  margin:0pt;
+  padding:0pt;
+  xwidth:100%;
+}
+
+#luxury_search table thead a {
+  display:inline;
+  color:#5496FC;
+  background-color:#C6DBFF;
+}
+
+#luxury_search table thead th {
+  background-color:#C6DBFF;
+  border:1px solid black;
+  font-size:95%;
+}
+
+#luxury_search table th {
+  background-color:#EEEEEE;
+  border:1px solid black;
+  padding:2px 5px;
+  white-space:nowrap;
+}
+#luxury_search table td {
+  background-color:#FFFFFF;
+  border:1px solid black;
+  padding:2px 5px;
+}
+
+
+#togodb table.confirm {
+  border: 1px solid #CC0000;
+  border-collapse : collapse;
+  border-spacing  : 0;
+  margin          : 0;
+  padding         : 0;
+  font-size       : 95%;
+  width           : auto;
+}
+
+#togodb table.confirm th {
+  border: 1px solid #FF0000;
+  background-color: #CC0000;
+  font-weight: bold;
+  color : white;
+}
+
+#togodb table.confirm td.label {
+  border: 1px solid #CC0000;
+  background-color: #eee;
+  padding: 2px 5px 2px 5px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#togodb table.confirm td {
+  border: 1px solid #CC0000;
+  background-color: #fff;
+  padding: 2px 5px 2px 5px;
+}
+
+#togodb table.confirm tr.enabled td {
+  text-align      : center;
+  background-color: white;
+}
+
+#togodb table.confirm tr.disabled td {
+  text-align      : center;
+  background-color: #BBBBBB;
+}
+
+#togodb label.confirm {
+  border-width: 0px 0px 1px 0px;
+  border-style: dashed;
+  border-color: #bbb;
+  padding: 1px 2px 1px 2px;
+  margin-bottom: 5px;
+  display: block;
+  width: 400px;
+  background-color: #eee;
+  font-weight:bold;
+}
+
+#togodb input.invalid {
+  background-color: pink;
+}
+
+#togodb tr.disabled input.invalid,
+#togodb table.confirm tr.disabled td input {
+  background-color: #BBBBBB;
+}
+
+#togodb .content {
+  margin : 20px;
+}
+
+
+/* tab */
+
+/*
+div.tab{
+  margin  : 10px 10px 10px 0px;
+  padding : 0px;
+  display : block;
+}
+div.tab span a{
+  text-decoration  : none;
+}
+
+div.tab span{
+  float: left;
+  margin: 1;
+  margin-top: 5px;
+  padding: 1px 0;
+  text-align: center;
+  text-decoration  : none;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+}
+
+div.tab span.as{
+  border-right-color: #539C3F;
+  border-left-color: #539C3F;
+  background-color: #8CC871;
+}
+div.tab span.on,
+div.tab span.as-on{
+  border:1px dashed pink;
+  margin: 0;
+  margin-top: 0;
+  padding-top: 2px;
+  padding-bottom: 5px;
+}
+div.tab span.on{
+  margin-top: 1px;
+  border-bottom: none;
+}
+div.tab span.as-on{
+  border-bottom-color: #8CC871;
+}
+div.tab span a{
+  display: block;
+  margin: -2px 0;
+  padding: 2px 0;
+  color:#666;
+}
+div.tab span.on a,
+div.tab span.as-on a{
+  margin-bottom: -5px;
+  padding-bottom: 5px;
+  font-weight:bold;
+}
+div.tab span.on a{
+  color:#333;
+}
+div.tab span.as a,
+div.tab span.as-on a{
+  color:#fff;
+}
+
+div.tab span img {
+  border : 0;
+}
+*/
+
+/*
+div.tab {
+  border-color     : -moz-use-text-color #DDDDDD rgb(221, 221, 221);
+  border-style     : none solid solid;
+  margin-top       : -1px;
+  padding          : 10px 10px 10px 0px;
+  clear            : both;
+  border           : 0;
+}
+*/
+
+/* Link settings */
+table#link_settings {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0pt;
+  margin: 0pt;
+  padding: 0pt;
+}
+
+table#link_settings thead th {
+  background: #666666 repeat scroll 0%;
+  border: 1px solid #999999;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding: 4px 5px;
+  text-align: left;
+}
+
+table#link_settings th {
+  background: url(/images/togodb/bg_th.jpg) repeat-x;
+  border: 1px solid #999999;
+  padding: 2px 5px;
+  white-space: nowrap;
+  font-size: 12px;
+  text-align: center;
+}
+
+table#link_settings td {
+  border: 1px solid #999999;
+  text-align: center;
+  padding: 4px 5px;
+  background: #FFFFFF;
+}
+/* End of Link settings */
+
+#togodb h3{
+  clear: left ;
+  display: block;
+  font: bold 120% arial, sans-serif;
+  clear: left;
+  border: 1px solid #000;
+  margin-top: 0px;
+  padding: 2px 0px 2px 15px;
+  color: #000;
+  background-color: #de8;
+}
+
+
+#togodb dl.summary {
+  border: 1px solid #999;
+  margin: 1px;
+  padding: 0px 10px 10px 10px;
+}
+
+#togodb dl.summary dt {
+  margin-top: 1em;
+  font: bold 110% arial, sans-serif;
+}
+#togodb dl.summary dd {
+
+}
+
+
+/* tab: setting */
+
+#togodb #setting textarea {
+  width : 600px;
+  height : 80px;
+}
+
+@charset "UTF-8";
+
+/*全てのスタイルを初期化*/
+*{padding:0px:
+margine:0px;
+  font-size:1em;
+  color:#555;
+  line-height:1.8em;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: #D2D2D2;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font: 95% "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3", sans-serif;
+}
+
+a img {
+  border-style: none;
+}
+
+
+a { color: #0000FF; text-decoration: none; }
+a:link{ color: #0000FF; text-decoration: none; }
+a:visited       { color: #003399; text-decoration: none;}
+a:active        { color: #FF3300; text-decoration: underline; }
+/* a:hover{ color: #FF3300; text-decoration: underline; } */
+a:hover{ color: #FF3300; background-color: #FFFFCC; text-decoration: underline; }
+
+/*マウスが乗ったリンク付き画像の透明度*/
+a:hover img {
+  opacity:0.6;
+  filter: alpha(opacity=60);
+}
+
+
+/*その他全体に共通のクラス*/
+
+.clear {
+  clear: both;
+}
+
+
+/*フォーム*/
+
+input{
+  line-height: 1.2em;
+}
+
+/*インプットエリアにボーダーをつける*/
+input.bgWhite {
+  background: #FFFFFF;
+  border: 1px solid #333333;
+}
+
+
+
+/*全体レイアウト*/
+
+#wrapper {
+  text-align: left;
+  margin: 0px 0px 10px 50px;
+  padding: 0px;
+  width: 1024px;
+//  background-color: #D2D2D2;
+  border: 1px solid #999999;
+}
+#contents {
+  margin: 0px;
+  padding: 0px;
+  clear: both;
+//  background: url(/images/togodb/bg_repeat.jpg) repeat-y 0px 0px;
+}
+
+
+#footer {
+//  background: url(/images/togodb/bg_footer.jpg) no-repeat 0px 0px;
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: auto;
+  clear: both;
+}
+/*IE6用　IE6でフッターの前に隙間ができるのでIE6のみ修正してます*/
+*html body #footer {
+  background: url(/images/togodb/bg_footer.jpg) no-repeat 0px -1px;
+}
+
+
+/*ヘッダー*/
+
+#header {
+  margin: 0px;
+  padding: 0px;
+  height: 120px;
+  width: auto;
+//  background: url(/images/togodb/bg_header.jpg) no-repeat 0px 0px;
+}
+#header .logo {
+  float: left;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+/*ヘッダーのトップボタン4つ*/
+
+#topbutton {
+  float: right;
+  width: 290px;
+  height: 62px;
+  margin: 0px 20px 0px 0px;
+}
+#topbutton img {
+  display: block;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+/*マウスが乗ったリンク付き画像の透明度*/
+#topbutton a:hover img {
+  opacity:1.0;
+  filter: alpha(opacity=100);
+}
+
+
+/*グローバルナビ*/
+#header #globalNavi {
+  clear: both;
+  margin-left: 80px;
+}
+
+
+#globalNavi img {
+  display: block;
+  float: left;
+}
+
+
+
+/*左サイド*/
+
+
+#sidenavi {
+  margin: 0px;
+  padding: 0px;
+border:1px solid red;
+}
+#icon {
+  margin-left: 50px;
+  text-align: center;
+  overflow: auto;
+//  height: 520px;
+  width: 220px;
+}
+#icon h2 {
+  margin-bottom: 20px;
+}
+
+#icon .record {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0033CC;
+}
+#icon .record img {
+  margin: 0px;
+  padding: 0px;
+}
+#icon .record ul {
+  margin: 0px;
+  padding: 0px;
+}
+#icon .record li {
+  list-style: none;
+}
+
+
+#sidenavi .tableName {
+  margin-left: 60px;
+  width: 200px;
+//  height: 600px;
+  overflow: auto;
+}
+#sidenavi .tableName h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+#sidenavi .tableName ul {
+  margin-bottom: 40px;
+}
+#sidenavi .tableName li {
+  list-style: none;
+  font-weight: normal;
+}
+
+
+
+/*右のメイン*/
+#main {
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+border:1px solid blue;
+}
+#main .mainSpace {
+  margin-right: 60px;
+  margin-top: 0px;
+}
+#main h2 {
+  margin-bottom: 20px;
+}
+#main table {
+  margin-bottom:20px;
+}
+
+/*-------------------------------------------
+以下　データベースページ
+-------------------------------------------*/
+
+/*Setup column informationのテーブル*/
+table.col {
+}
+table.col th{
+  border: 1px solid #999999;
+  background: url(/images/togodb/bg_th.jpg) no-repeat;
+  height: 20px;
+  text-align: center;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+table.col td {
+  border: 1px solid #999999;
+  text-align: center;
+  padding: 4px 10px;
+  background: #FFFFFF;
+}
+
+
+/*Kidsのテーブル*/
+table.sear {
+  width: 600px;
+}
+table.sear th{
+  border: 1px solid #999999;
+  background: url(/images/togodb/bg_th.jpg) no-repeat;
+  height: 20px;
+  text-align: center;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+table.sear td {
+  border: 1px solid #999999;
+  text-align: center;
+  padding: 4px 10px;
+  background: #FFFFFF;
+}
+
+
+table.adv {
+  width: 260px;
+}
+table.adv th{
+  border: 1px solid #999999;
+  background: url(/images/togodb/bg_th.jpg) no-repeat;
+  height: 20px;
+  text-align: center;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+table.adv td{
+  border: 1px solid #999999;
+  text-align: center;
+  padding: 4px 10px;
+  background: #FFFFFF;
+}
+table.adv td.adv2 {
+  border: 1px solid #999999;
+  text-align: left;
+  padding: 4px 10px;
+  background: #666666;
+  font-size: 12px;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 16px;
+}
+
+
+/*schema.htmlのテーブル*/
+
+table.topline {
+}
+table.topline th {
+  border: 1px solid #999999;
+  background: url(/images/togodb/bg_th.jpg) no-repeat;
+  height: 20px;
+  text-align: center;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+table.topline td {
+  border: 1px solid #999999;
+  text-align: center;
+  background: #FFFFFF;
+  width: 40px;
+  height: 20px;
+}
+dl.topline2 {
+  margin-bottom: 40px;
+  clear: both;
+  width: 300px;
+}
+dl.topline2 dt {
+  float: right;
+  padding-top: 50px;
+}
+dl.topline2 dd {
+  float: left;
+}
+
+/*importstartページ*/
+
+.startimporting {
+  text-align: center;
+  width: 200px;
+}
+
+.startimporting a:hover img {
+  opacity:1.0;
+  filter: alpha(opacity=100);
+}
+
+
+/*-------------------------------------------
+以下　インポートページ
+-------------------------------------------*/
+.iconSpace {
+  height: 160px;
+}
+
+iconSpace h2 {
+}
+
+.iconSpace h3 {
+  margin: 0px;
+  padding: 0px;
+  float: left;
+}
+.iconSpace h3 a {
+  display: block;
+  margin-right: 40px;
+}
+
+/*マウスが乗ったリンク付き画像の透明度*/
+.iconSpace a:hover img {
+  opacity:1.0;
+  filter: alpha(opacity=100);
+}
+
+
+.importMain {
+}
+.importMain h2 {
+}
+
+.importMain img {
+}
+
+table.summ {
+  width: 582px;
+}
+
+table.summ th {
+  text-align: left;
+  padding-left: 30px;
+  width: 120px;
+  background: #EDEFF7;
+  border: 1px solid #999999;
+}
+
+table.summ td {
+  padding-left: 30px;
+  text-align: left;
+  background: #FFFFFF;
+  border: 1px solid #999999;
+}
+table.set {
+}
+table.set th {
+  text-align: left;
+}
+table.set td {
+}
+
+/*ColumnSettingのテーブル*/
+
+table.clm {
+  width: 502px;
+}
+table.clm th {
+  border: 1px solid #999999;
+  background: url(/images/togodb/bg_th.jpg) no-repeat;
+  height: 30px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 12px;
+  color: #000000;
+}
+table.clm td {
+  border: 1px solid #999999;
+  text-align: center;
+  padding: 4px 10px;
+  background: #FFFFFF;
+}
+
+h2 {
+  text-align: left;
+  color: #616a7c;
+  font-family: 'Trebuchet MS';
+  font-size: 18px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: nomal;
+  font-variant: nomal;
+  font-weight: normal;
+  font-height: normal;
+  margin: 10pt;
+  padding: 10pt;
+}
+
+div#drag-player-proxy {
+  text-align: center;
+  font-weight: bold;
+}
+
+div.logo a:hover {
+  background-color: transparent;
+}
+
+ul.tab li a:hover {
+  background-color: transparent;
+}
+
+div#login-pane {
+border:7px solid #aaa;
+width:500px;
+margin: auto;
+}
+div#login-pane h2 {
+margin-top:1em;
+margin-bottom:0em;
+}
+div#logo h1 a {
+color:white;
+}

@@ -1,0 +1,4 @@
+8
+Undefined variable: filename
+D:\www\uploader\releases\101\SolmetraUploader.php
+359

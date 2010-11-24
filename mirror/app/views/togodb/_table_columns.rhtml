@@ -1,0 +1,8 @@
+<%- columns = @record.enabled_columns -%>
+<%- options = Array.new -%>
+<%- columns.each do |column| -%>
+<%- options << [column.label, column.name] -%>
+<%- end -%>
+<input type="hidden" name="table_<%=align-%>[id]" value="<%= @record.id -%>">
+<input type="hidden" name="table_<%=align-%>[table]" value="<%= @record.name -%>">
+<%= select("table_#{align}", 'column', options) %>

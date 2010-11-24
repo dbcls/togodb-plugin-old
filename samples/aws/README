@@ -1,0 +1,19 @@
+今回のサンプルはMemberContollerにMemberクラスのAPIを受け持つ
+invoke_apiというアクションを追加しました.
+
+
+やることは下記の通りです.
+1. app/apis/{tablename.singularize}_service.rbを配置
+
+2. app/controller/{tablename.singularize}_controller.rbに数行追加
+
+追加したのは下記3行です.
+require 'apis/member_service'
+
+web_service_dispatching_mode :delegated
+# "invoke_api"がアクション名になる
+web_service :invoke_api ,  MemberService.new
+
+
+3. APIの確認方法
+client.rbを参照してください.

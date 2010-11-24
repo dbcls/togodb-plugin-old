@@ -1,0 +1,17 @@
+<%- done_index = @steps.keys.index(@step_action_name.intern).to_i -%>
+<% j = 0 %>
+<%- @steps.each_with_index do |(action, name), i| -%>
+<% j += 1 %>
+<%- if i <= done_index %>
+<%-   imgtag = image_tag("/images/togodb/gn_#{j}.gif",:alt=>name) %>
+<%- else %>
+<%-   imgtag = image_tag("/images/togodb/gn_off_#{j}.gif",:alt=>name) %>
+<%- end %>
+<%- #  style = i < done_index ? "enabled" : "" -%>
+<%- #  style = "current" if (@step_action_name == action.to_s) -%>
+<%- #  span  = content_tag(:span, "#{i+1}. #{name}", :class=>style, style=>"text-decoration : none;") -%>
+
+<%= link_to imgtag, {:action=>action} -%>
+<%- end -%>
+
+

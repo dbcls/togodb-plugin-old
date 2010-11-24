@@ -1,0 +1,10 @@
+<h3><%=h exception.class.name %></h3>
+
+<table>
+<tr>
+<td align=center><%= image_tag("togodb/alert.png") %></td>
+<td>
+  <pre><%= Togodb.pretty_error_message(exception).split(/\n/).map{|i| h(i)}.join('<BR>') %></pre>
+</td>
+</tr>
+</table>

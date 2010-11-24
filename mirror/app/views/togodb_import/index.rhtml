@@ -1,0 +1,7 @@
+<%- @message = as_("The above steps will show you how to create a new table from your csv file.") -%>
+<%- @step    = 100 -%>
+
+<div align="center">
+<% label = as_("go to %s") % @steps[:name] -%>
+<%= link_to label, :action=>"name" %>
+</div>

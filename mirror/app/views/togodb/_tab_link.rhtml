@@ -1,0 +1,30 @@
+<h3><%= as_("Link settings") %></h3>
+
+<div id="tab_link" style="overflow: auto;">
+
+<table cellpadding="0" cellspacing="0" id="link_settings">
+<thead>
+<tr>
+  <th><%= as_("Column") %></th>
+  <th colspan="2"><%= as_("HTML link") %></th>
+</tr>
+</thead>
+<tbody>
+<%- columns = @record.enabled_columns -%>
+<%- columns.each do |column| -%>
+<tr>
+  <td rowspan="2"><%= h column.name %></td>
+  <th><%= as_("Prefix") %></th>
+  <td align="left"><%= togodb_text_field column, :html_link_prefix, :size => 80 %></td>
+</tr>
+<tr>
+  <th><%= as_("Suffix") %></th>
+  <td align="left"><%= togodb_text_field column, :html_link_suffix, :size => 80 %></td>
+</tr>
+<%- end -%>
+</tbody>
+</table>
+
+<%= safe_link_to_remote image_tag('togodb/save.png', :alt => 'Save'), {:label => 'Save'}.merge(ajax(:url => {:action => "update_columns", :id => @record}, :submit => "tab_link")) %>
+
+</div>

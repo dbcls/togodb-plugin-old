@@ -1,0 +1,39 @@
+<% form_remote_tag :url => {:controller => 'togodb', :action => 'set_webservice', :id => @togodb_column.id}, :update => 'column' do -%>
+<table class="luxury_search">
+  <tr>
+    <th style="text-align:center;">NCBI</th>
+    <th style="text-align:center;">EBI</th>
+    <th style="text-align:center;">DDBJ</th>
+  </tr>
+  <tr>
+    <td style="text-align:left;" valign="top">
+      <div><%= select_tag :ncbi, options_for_select([["GenBank", "1"], ["PubMed", "2"]]) %></div>
+      <div><%= check_box_tag :genbank_entry_text, "1", @togodb_column.genbank_entry_text? %><%= hidden_field_tag :genbank_entry_text, 0 %> All Entry (Text)</div>
+      <div><%= check_box_tag :genbank_entry_xml, "1", @togodb_column.genbank_entry_xml? %><%= hidden_field_tag :genbank_entry_xml, 0 %> All Entry (XML)</div>
+      <div><%= check_box_tag :genbank_seq_fasta, "1", @togodb_column.genbank_seq_fasta? %><%= hidden_field_tag :genbank_seq_fasta, 0 %> Sequence (FASTA)</div>
+      <div><%= check_box_tag :pubmed_abstract, "1", @togodb_column.pubmed_abstract? %><%= hidden_field_tag :pubmed_abstract, 0 %> PubMed Abstract</div>
+    </td>
+    <td style="text-align:left;" valign="top">
+      <div><%= select_tag :ebi, options_for_select([["EMBL", "1"]]) %></div>
+      <div><%= check_box_tag :embl_entry_text, "1", @togodb_column.embl_entry_text? %><%= hidden_field_tag :embl_entry_text, 0 %> All Entry (Text)</div>
+      <div><%= check_box_tag :embl_entry_xml, "1", @togodb_column.embl_entry_xml? %><%= hidden_field_tag :embl_entry_xml, 0 %> All Entry (XML)</div>
+      <div><%= check_box_tag :embl_seq_fasta, "1", @togodb_column.embl_seq_fasta? %><%= hidden_field_tag :embl_seq_fasta, 0 %> Sequence (FASTA)</div>
+    </td>
+    <td style="text-align:left;" valign="top">
+      <div><%= select_tag :ddbj, options_for_select([["DDBJ", "1"], ["DAD", "2"]]) %></div>
+      <div><%= check_box_tag :ddbj_entry_text, "1", @togodb_column.ddbj_entry_text? %><%= hidden_field_tag :ddbj_entry_text, 0 %> All Entry (Text)</div>
+      <div><%= check_box_tag :ddbj_entry_xml, "1", @togodb_column.ddbj_entry_xml? %><%= hidden_field_tag :ddbj_entry_xml, 0 %> All Entry (XML)</div>
+      <div><%= check_box_tag :ddbj_seq_fasta, "1", @togodb_column.ddbj_seq_fasta? %><%= hidden_field_tag :ddbj_seq_fasta, 0 %> Sequence (FASTA)</div>
+    </td>
+  </tr>
+</table>
+<div align="center">
+  <%= submit_tag "  OK  ", :onclick => "if (!confirm('Set Web Service ?')) return false; return true;" %>
+  <input id="close_web_service_popup_btn" type="button" value=" Cancel " style="margin-left:20px;"/>
+</div>
+<% end -%>
+<script type="text/javascript">
+Event.observe("close_web_service_popup_btn", "click", function() {
+  $("web_services_setup_popup").style.visibility = "hidden";
+});
+</script>

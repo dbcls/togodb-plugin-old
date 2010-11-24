@@ -1,0 +1,18 @@
+<h3><%= as_("Table is missing") %></h3>
+
+<table>
+<tr>
+<td align=center><%= image_tag("togodb/alert.png") %></td>
+<td>
+  <%= as_("The table doesn't exist in your database, but it remains in our schema information. It would be ...") %>
+  <ul class="block">
+    <li><%= as_("You are now importing to the table.") %></li>
+    <li><%= as_("You have dropped the table manually.") %></li>
+  </ul>
+
+  <%= link_to as_("Continue to import"), {:controller=>"togodb_import", :action=>"name", :id=>@record, :continue=>true, :table_name=>@record.name}, :method=>:post %><BR>
+  <%= safe_link_to_remote as_("Destroy it"), :url=>{:action=>"destroy", :id=>@record} %><BR>
+</td>
+</tr>
+</table>
+

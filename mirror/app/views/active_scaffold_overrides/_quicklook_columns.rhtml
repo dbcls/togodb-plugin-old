@@ -1,0 +1,33 @@
+<%- columns = active_scaffold_config.show.columns -%>
+<%- @togodb_table = Togodb::Table.find(:first, :conditions => ['name = ?', params[:controller]]) -%>
+<%- b_display_webservice_column = @togodb_table.nil? ? false : @togodb_table.webservice_column? -%>
+<table class="record_show">
+<thead>
+<th colspan=2 class="record_show_label">
+  <%=h @record.to_label %>
+</th>
+</thead>
+<tbody>
+<% columns.each :for => @record do |column| %>
+  <tr class="form-element">
+  <% if column.is_a? ActiveScaffold::DataStructures::ActionColumns -%>
+    <th class="record_show_column_name">
+	  <label for="<%= "slide_show_#{column.name}" %>"><%= column.name -%></label></th>
+    <td class="record_show_column_value">
+	  <p class="break-word"><%= render :partial => 'show_columns' %></p></td>
+  <% else -%>
+    <th class="record_show_column_name">
+       <label for="<%= "slide_show_#{column.name}" %>"><%= column.label -%></label></th>
+    <td class="record_show_column_value">
+       <p class="break-word"><%= togodb_get_show_column_value(@record, column) -%> &nbsp;</p></td>
+  <% end -%>
+  </tr>
+<% end -%>
+<% if b_display_webservice_column -%>
+  <tr>
+  	<th class="record_show_column_name">&nbsp;</th>
+  	<td class="record_show_column_value" style="white-space:nowrap;"><%= togodb_webservice_column_value(@record) %></td>
+  </tr>
+<% end -%>
+</tbody>
+</table>

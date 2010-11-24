@@ -1,0 +1,179 @@
+/*
+ ActiveScaffoldSchema
+   for simple and advanced search
+*/
+
+.active-scaffold .lefting {
+float:left;
+vertical-align:middle;
+}
+
+.active-scaffold .clear {
+clear:both;
+}
+
+
+.active-scaffold tr.disabled td,
+.active-scaffold tr.disabled td.sorted
+ { background-color: #CCCCCC; }
+#schema_column-content table { width : auto; }
+#schema-tbody div.active-scaffold-footer { display : none; }
+
+
+h2 {
+  border-color   : #CC0000;
+  border-style   : solid;
+  border-width   : 0pt 0pt 1px;
+  color          : #444444;
+  display        : block;
+  font-family    : "Trebuchet MS",arial,sans-serif;
+  font-size      : 1.1em;
+  letter-spacing : 2px;
+  margin         : 0px 0px 0pt 0px;
+  padding        : 0pt;
+}
+
+
+ul.records li.record {
+        display:inline;
+        list-style-type:none;
+}
+
+ul.records li.record a {
+        float:left;
+        display:block;
+        height : 100%;
+        background:url(/images/togodb/file.png) no-repeat center 20px;
+        width :150px;
+        height :150px;
+        text-align: center;
+        font-weight: bold;
+        border:1px solid #DCDADE;
+}
+
+ul.records li.record div.enabled a {
+        background:url(/images/togodb/html.png) no-repeat center 20px;
+}
+
+ul.records li.record div.prev a {
+        background:url(/images/togodb/1leftarrow.png) no-repeat center;
+        border:0px;
+        width :50px;
+}
+
+ul.records li.record div.next a {
+        background:url(/images/togodb/1rightarrow.png) no-repeat center;
+        border:0px;
+        width :50px;
+}
+
+ul.records li.record a:hover,
+ul.records li.record div.enabled a:hover,
+ul.records li.record div.prev    a:hover,
+ul.records li.record div.next    a:hover,
+ul.records li.shown div.enabled a,
+ul.records li.shown a {
+        background-color: #FFFFCC;
+}
+
+  background-color: #FFFFCC;
+}
+
+
+.active-scaffold .clear {
+        clear : both;
+}
+
+.active-scaffold dl.preview dt {
+  position:relative;
+}
+
+
+
+#luxury_search table {
+border:1px solid black;
+border-collapse:collapse;
+border-spacing:0pt;
+margin:0pt;
+padding:0pt;
+xwidth:100%;
+}
+
+#luxury_search table thead a{
+display:inline;
+color:#5496FC;
+background-color:#C6DBFF;
+}
+
+#luxury_search table thead th {
+background-color:#C6DBFF;
+border:1px solid black;
+font-size:95%;
+}
+
+#luxury_search table th {
+background-color:#EEEEEE;
+border:1px solid black;
+padding:2px 5px;
+white-space:nowrap;
+}
+#luxury_search table td {
+background-color:#FFFFFF;
+border:1px solid black;
+padding:2px 5px;
+}
+
+
+table.confirm {
+  border: 1px solid #CC0000;
+  border-collapse : collapse;
+  border-spacing  : 0;
+  margin          : 0;
+  padding         : 0;
+  font-size       : 95%;
+  width           : auto;
+}
+
+table.confirm th {
+  border: 1px solid #FF0000;
+  background-color: #CC0000;
+  font-weight: bold;
+  color : white;
+}
+
+table.confirm td.label {
+  border: 1px solid #CC0000;
+  background-color: #eee;
+  padding: 2px 5px 2px 5px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+table.confirm td {
+  border: 1px solid #CC0000;
+  background-color: #fff;
+  padding: 2px 5px 2px 5px;
+}
+
+table.confirm tr.enabled td {
+  text-align      : center;
+  background-color: white;
+}
+
+table.confirm tr.disabled td {
+  text-align      : center;
+  background-color: #EFEFF7;
+}
+
+label.confirm {
+  border-width: 0px 0px 1px 0px;
+  border-style: dashed;
+  border-color: #bbb;
+  padding: 1px 2px 1px 2px;
+  margin-bottom: 5px;
+  display: block;
+  width: 400px;
+  background-color: #eee;
+  font-weight:bold;
+}
+

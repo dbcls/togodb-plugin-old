@@ -1,0 +1,387 @@
+/*
+ ActiveScaffoldSchema
+   for simple and advanced search
+*/
+
+a         {color: #000000; text-decoration: underline;}
+a:visited {color: #000000; text-decoration: underline;}
+a:hover   {color: #000000; background-color: #ff3c00;}
+
+a img {
+  border-style: none;
+}
+
+.active-scaffold {
+  margin: 0px 0;
+}
+
+.active-scaffold .active-scaffold td {
+  background-color: #FFFFFF;
+  border: solid 1px #999999;
+}
+
+.active-scaffold .active-scaffold th {
+  border: solid 1px #999999;
+}
+
+.active-scaffold input.text-input,
+.active-scaffold select {
+  border: solid 1px #999999;
+}
+
+.active-scaffold textarea {
+  border: solid 1px #999999;
+}
+
+
+
+.active-scaffold .lefting {
+float:left;
+vertical-align:middle;
+}
+
+.active-scaffold .clear {
+clear:both;
+}
+
+div.fieldWithErrors .radio-group {
+  border:1px solid #FF0000;
+  background-color:#FFCCCC;
+}
+.radio-group div.fieldWithErrors {display : inline;}
+.active-scaffold .required label {color:red;}
+
+.active-scaffold .fieldWithErrors input.text-input,
+.active-scaffold .fieldWithErrors select {
+  background-color:#FFCCCC;
+}
+
+.active-scaffold table {
+width:auto;
+text-align:center;
+}
+
+
+table.luxury_search {
+border:1px solid black;
+border-collapse:collapse;
+border-spacing:0pt;
+margin:0pt;
+padding:0pt;
+}
+
+table.luxury_search thead a{
+display:inline;
+color:#5496FC;
+background-color:#C6DBFF;
+}
+
+table.luxury_search thead th {
+background:#666666;
+repeat scroll 0%;
+border:1px solid #999999;
+color: #FFFFFF;
+font-size:12px;
+padding: 4px 5px;
+text-align: left;
+}
+
+table.luxury_search th {
+background:url(/images/togodb/bg_th.jpg) repeat-x;
+border:1px solid #999999;
+padding:2px 5px;
+white-space:nowrap;
+}
+table.luxury_search td {
+	border: 1px solid #999999;
+	text-align: center;
+	padding: 4px 5px;
+	background: #FFFFFF;
+}
+
+
+/* header actions */
+
+ul.floated-menu {
+  position   : absolute;
+  right      : 5px;
+  text-align : right;
+  top        : 5px;
+
+  padding         : 0;
+  margin          : 0;
+  list-style-type : none;
+}
+
+ul.floated-menu li {
+  float            : left;
+  margin-right     : 5px;
+  padding          : 0px 2px 0px;
+  border           : 1px #ffb366 solid;
+  background-color : #fffdee;
+  text-align       : center;
+}
+
+.header-actions {
+  right      : 5px;
+  text-align : right;
+  top        : 5px;
+}
+
+/*
+.header-actions a.more {
+  vertical-align : bottom;
+}
+
+.header-actions a.more img {
+  border : 0px;
+}
+
+.active-scaffold .header-actions a {
+  font                : bold 14px arial;
+  letter-spacing      : -1px;
+  text-decoration     : none;
+  padding             : 0px 5px;
+  white-space         : nowrap;
+  margin-left         : 5px;
+  background-position : 1px 50%;
+  background-repeat   : no-repeat;
+}
+*/
+
+p.break-word {
+  padding : 0;
+  margin  : 0;
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  white-space: pre-wrap;      /* CSS3 */
+  word-wrap: break-word;      /* IE 5.5+ */
+  word-break:break-all;
+}
+
+.page-header h2 {
+  margin : 0;
+}
+
+
+/* search box */
+/*インプットエリアにボーダーをつける*/
+/* だぶって記述されている (line 250)
+input.bgWhite {
+	background: #FFFFFF;
+	border: 1px solid #333333;
+}
+*/
+/* だぶって記述されている (line 245)
+input{
+  line-height:10px;
+  line-height: 1.2em;
+}
+*/
+
+h2{
+	text-align: left;
+  color: #616a7c;
+  font-family: 'Trebuchet MS';
+  font-size: 18px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: nomal;
+  font-variant: nomal;
+  font-weight: normal;
+  font-height: normal;
+  margin: 10pt;
+  padding: 10pt;
+}
+
+*{padding:0px:
+margine:0px;
+	font-size:1em;
+	color:#555;
+	line-height:1.8em;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #f5f5f5;
+	text-align: center;
+	margin: 10px;
+	padding: 5px;
+	font: 95% "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3", sans-serif;
+}
+
+a img {
+	border-style: none;
+}
+
+
+td.actions a a:visited {
+  color: #000000; text-decoration:underline;
+}
+a {color: #000000; text-decoration:underline;}
+a:visited {color: #000000; text-decoration:underline;}
+a:hover { color: #000000; background-color:#ff3c00;}
+
+
+/*マウスが乗ったリンク付き画像の透明度*/
+a:hover img{
+opacity:0.6;
+filter: alpha(opacity=60);
+}
+
+
+/*その他全体に共通のクラス*/
+
+.clear {
+	clear: both;
+}
+
+
+
+/*フォーム*/
+
+input{
+  /* --> line-height:10px; <-- */
+  line-height: 1.2em;
+}
+input[type="text"] {
+  height: 1.3em;
+}
+
+/*インプットエリアにボーダーをつける*/
+input.bgWhite {
+	background: #FFFFFF;
+	border: 1px solid #333333;
+        height: 1.5em;
+}
+
+/*テーブル*/
+.record {
+	width: 600px;
+}
+.record th{
+	border: 1px solid #999999;
+	background:url(/images/togodb/bg_th.jpg) no-repeat;
+	height: 20px;
+	text-align: center;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+.record td{
+	border: 1px solid #999999;
+	text-align: center;
+	padding: 4px 10px;
+	background: #FFFFFF;
+}
+
+/* active scaffold */
+.active-scaffold th {
+background:url(/images/togodb/bg_th2.jpg) repeat-x #000;
+color: #fff;
+text-align: left;
+vertical-align: top;
+height: 100%;
+}
+
+.active-scaffold th a {
+background:url(/images/togodb/bg_th2.jpg) repeat-x #000;
+color: #fff;
+padding: 2px 15px 2px 5px;
+}
+.active-scaffold th hover {
+background: #555;
+opacity:0.8;
+color: #ff8;
+}
+
+.active-scaffold th a:hover {
+background: #555;
+opacity:0.8;
+color: #ff8;
+}
+
+
+.active-scaffold tr.record td {
+padding: 5px 4px;
+color: #333;
+font-family: Verdana, sans-serif;
+font-size: 11px;
+background-color: #f5F3FF;
+border-bottom: solid 1px #C5DBF7;
+border-left: solid 1px #C5DBF7;
+}
+.active-scaffold tr.even-record td {
+background-color: #fff;
+border-left: solid 1px #ddd;
+}
+
+.active-scaffold tr.record td.sorted {
+background-color: #e4e4Ff;
+border-bottom: solid 1px #AFD0F5;
+}
+.active-scaffold tr.even-record td.sorted {
+background-color: #f5f3ff;
+border-bottom: solid 1px #AFD0F5;
+}
+
+/* for slide show in modal window */
+
+.active-scaffold tr.shown td,
+.active-scaffold tr.shown td.sorted,
+.active-scaffold tr.shown td.empty
+ { background-color: #FFFFCC; }
+
+div.quicklook
+{
+  padding : 20px;
+}
+
+div.quicklook .footer
+{
+  text-align: center;
+}
+
+#header {
+  margin: 0px;
+  padding: 0px;
+  height: 70px;
+  width: auto;
+  background: url(/images/togodb/logobar.png) repeat-x 0px 0px;
+}
+
+.popupdiv{
+  position:fixed;
+  left:50px;
+  top:50px;
+  display:none;
+  background-color:transparent;
+}
+
+table.record_show {
+  border-collapse: collapse;
+}
+
+th.record_show_label {
+  color: rbg(255,255,255);
+  background: rgb(0,0,80) none repeat scroll 0 0;
+  border: 1px solid rgb(153,153,153);
+  font-size: 12pt;
+  padding: 4px 5px;
+  text-align: left;
+}
+
+th.record_show_column_name {
+  background: rgb(200,200,200) none repeat scroll 0 0;
+  border: 1px solid rgb(153,153,153);
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+
+td.record_show_column_value {
+  background: rgb(255,255,255) none repeat scroll 0 0;
+  border: 1px solid rgb(153,153,153);
+  padding: 4px 5px;
+  text-align: left;
+}

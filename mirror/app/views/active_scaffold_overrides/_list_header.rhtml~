@@ -1,0 +1,41 @@
+<table class="header-actions">
+<tr>
+<td>
+  <div id="simple_search" style="text-align:center;">
+    <%= luxury_search_form %>
+	<table><tr><td  style="vertical-align:center;">
+      <%= link_to_function "<div style='height:9px;'></div>"+image_tag("togodb/1rightarrow.jpg", :id=>"luxury-search-toggler-image"), luxury_search_toggle, :class=>"more" if luxury_search? %>
+      </td><td  style="vertical-align:center;"><input type="text" class="bgWhite"  name="search" size="40" value="" class="text-input" id="<%= search_input_id %>" autocompleted="off" />
+      <%= submit_tag as_('Search'), :class => "submit" %>
+      <%= external_search_links %>
+      <a href="javascript:void(0)" class="cancel" onclick="f = this.up('form'); f.reset(); f.onsubmit();"><%= as_('Reset') -%></a>
+      <%= loading_indicator_tag(:action => :search) %>
+	  </td>
+          <td>
+            <input type="button" value="Download" onclick="copy_sort_order('simple'); this.form.action='<%= url_for(:action => 'download') %>'; this.form.submit();" />
+          </td>
+        </tr></table>
+      <%= hidden_field_tag :sort_column %>
+      <%= hidden_field_tag :sort_direction %>
+    </form>
+  </div>
+</td>
+
+<td>
+  <div class="header-actions">
+  <% if active_scaffold_config.action_links.any? { |link| link.type == :table } -%>
+    <% new_params = params_for(:action => :table) %>
+    <% active_scaffold_config.action_links.each :table do |link| -%>
+      <% next if controller.respond_to? link.security_method and !controller.send(link.security_method) -%>
+      <%= render_action_link(link, new_params) -%>
+    <% end -%>
+    <%= loading_indicator_tag(:action => :table) %>
+  <% end %>
+  </div>
+</td>
+</tr>
+</table>
+
+<%= render :partial=>"luxury_search" if luxury_search? %>
+
+<%= render :partial => 'sort_order_form' %>

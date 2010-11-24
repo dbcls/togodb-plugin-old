@@ -1,0 +1,16 @@
+1.02
+==================================
++ [BUGFIX] eliminated Flash Player timeout problem
++ [BUGFIX] fixed file reselection problem
++ [TWEAK]  improved file-upload error handling 
+           (added error key to uploaded file data)
+
+
+1.01
+==================================
++ [BUGFIX] fixed useOriginalName=true behaviour
+
+
+1.00
+==================================
+Innitial release

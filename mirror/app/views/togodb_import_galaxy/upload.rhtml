@@ -1,0 +1,41 @@
+<%= javascript_include_tag "crossdomain.js" %>
+
+<%- @message ||= as_("Upload data") -%>
+
+<div style="clear: both">
+<div align="center">
+
+<%= form_tag({}, :multipart=>true) %>
+  <!-- label for="data"><%= as_("Data") %>:</label-->
+  <%= text_area_tag "dataset", nil, :rows => 8, :cols => 40 %>
+  <%= hidden_field_tag "dataset_url", h(params[:dataset_base_url] % params[:dataset_id]) %>
+  <br/>
+  <%= submit_tag as_("Upload") %>
+</p>
+</form>
+
+<br/>
+<br/>
+
+File must be in TSV (tab separated value) format.
+
+</div>
+</div>
+
+<script language="JavaScript" type="text/javascript"><!--
+crossdomain.open();
+
+var _map;
+crossdomain.onload = function(){
+  crossdomain.request($('dataset_url').value,
+    function(flexEvent, data){
+        $('dataset').value = data.xml
+    });
+}
+
+crossdomain.onnoflash = function(){
+  alert("error");
+  // Flash 9 がインストールされていない場合
+}
+
+//--></script>

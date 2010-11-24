@@ -1,0 +1,27 @@
+<% name = "search[#{column.name}]" %>
+<% value = nil %>
+<%# value = params[column.name.to_s] if params %>
+<% case column.column.type -%>
+<% when :integer, :float, :decimal -%>
+  from <%= text_field_tag(name+"[from]", value, {:size => 10, :class => 'bgWhite'}) %>
+  to <%= text_field_tag(name+"[to]", value, {:size => 10, :class => 'bgWhite'}) %>
+<% when :date -%>
+  from
+    <%= text_field_tag(name+"[from][year]", value, {:size => 4, :class => 'bgWhite'}) %><%= text_field_tag(name+"[from][month]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[from][day]", value, {:size => 2, :class => 'bgWhite'}) %>
+  to
+    <%= text_field_tag(name+"[to][year]", value, {:size => 4, :class => 'bgWhite'}) %><%= text_field_tag(name+"[to][month]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[to][day]", value, {:size => 2, :class => 'bgWhite'}) %>
+<% when :time -%>
+  from
+    <%= text_field_tag(name+"[from][hour]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[from][min]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[from][sec]", value, {:size => 2, :class => 'bgWhite'}) %>
+  to
+    <%= text_field_tag(name+"[to][hour]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[to][min]", value, {:size => 2, :class => 'bgWhite'}) %><%= text_field_tag(name+"[to][sec]", value, {:size => 2, :class => 'bgWhite'}) %>
+<% when :boolean
+  options = [
+    ['', ''],
+    [as_('True'), '1'],
+    [as_('False'), '0']
+  ] -%>
+  <%= select_tag name, options_for_select(options, value) %>
+<% else -%>
+  <%= text_field_tag(name, value, { :autocomplete => "off", :size => 30, :class => 'bgWhite', :id => "search_#{column.name}"}) %>
+<% end -%>

@@ -1,0 +1,202 @@
+#wrapper {
+  text-align: left;
+  margin: 0px 0px 10px 50px;
+  padding: 0px;
+  width: 680px;
+  background-color: #D2D2D2;
+  border: 1px solid #999999;
+}
+
+#contents {
+  margin: 0px;
+  padding: 0px;
+  clear: both;
+  background: url(/images/togodb/bg_galaxy_repeat.png) repeat-y 0px 0px;
+}
+
+#footer {
+  background: url(/images/togodb/bg_galaxy_footer.png) no-repeat 0px 0px;
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: auto;
+  clear: both;
+}
+
+#header {
+  margin: 0px;
+  padding: 0px;
+  height: 120px;
+  width: auto;
+  background: url(/images/togodb/bg_galaxy_header.png) no-repeat 0px 0px;
+}
+
+#main {
+  margin-right: 60px;
+  margin-left: 60px;
+  padding: 0px;
+  float: none;
+  width: 560px;
+  height: 520px;
+  overflow: auto;
+}
+#main .mainSpace {
+  margin-top: 0px;
+}
+#main h2 {
+  margin-bottom: 20px;
+}
+#main table {
+  margin-bottom:20px;
+}
+
+table.luxury_search {
+border:1px solid black;
+border-collapse:collapse;
+border-spacing:0pt;
+margin:0pt;
+padding:0pt;
+}
+
+table.luxury_search thead a{
+display:inline;
+color:#5496FC;
+background-color:#C6DBFF;
+}
+
+table.luxury_search thead th {
+background:#666666;
+repeat scroll 0%;
+border:1px solid #999999;
+color: #FFFFFF;
+font-size:12px;
+padding: 4px 5px;
+text-align: left;
+}
+
+table.luxury_search th {
+background:url(/images/togodb/bg_th.jpg) repeat-x;
+border:1px solid #999999;
+padding:2px 5px;
+white-space:nowrap;
+}
+table.luxury_search td {
+	border: 1px solid #999999;
+	text-align: center;
+	padding: 4px 5px;
+	background: #FFFFFF;
+}
+
+ul.selected-item {
+        padding: 3px 0;
+        margin: 2px;
+        font: bold 12px Verdana, sans-serif;
+}
+
+.selected-item li {
+        list-style: none;
+        margin: 0;
+        display: inline;
+}
+
+.selected-item li span {
+        padding         : 3px 0.5em;
+        margin-left     : 3px;
+        border          : 1px solid #778;
+        background      : #BBBBBB;
+        color           : #EEEEEE;
+}
+
+.selected-item .enabled span { background : white; color : black; }
+.selected-item span.enabled  { background : white; color : black; }
+
+.selected-item .current span, .selected-item span.current
+{ background : white; color : black; border : 2px solid red; }
+
+.selected-item .logical span {
+        border          : 0px;
+        color           : black;
+        background      : white;
+}
+
+.selected-item li a {
+        text-decoration: none;
+}
+
+
+
+.message {
+  font-size : 1em;
+  height : 1.5em;
+  text-align : center;
+  width : 700px;
+}
+
+.message .notice {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : #FAD163;
+}
+
+#message {
+  font-size : 1em;
+  height : 1.5em;
+  text-align : center;
+  width : 100%;
+  margin-top : 5px;
+}
+
+#message .nothing {
+}
+
+#message .notice {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : #FAD163;
+}
+
+#message .error {
+  padding : 0.2em 1em 0.2em 1em;
+  background-color : pink;
+}
+
+
+.usage {
+background-color:#F6F6F9;
+border:1px solid #999999;
+font-family:monospace;
+font-size:115%;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:bold;
+line-height:normal;
+padding:10px;
+}
+.usage pre {
+  margin: 0;
+}
+
+
+dl.alternative dd {
+  margin-bottom: 10px;
+}
+
+.popup .tips {
+  display         : none;
+  position        : absolute;
+}
+
+.popup a:hover {
+  position:relative;
+}
+
+.popup a:hover .tips{
+  display          : block;
+  top              : 30px;
+  left             : 20px;
+  white-space      : nowrap;
+  text-decoration  : none;
+  border           : 1px solid black;
+  color            : black;
+  background-color : #FFFFAA;
+}

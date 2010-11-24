@@ -1,0 +1,46 @@
+<% show_dl_button = true -%>
+<%
+# We have to remove search form params before the url_for method call, otherwise it throughs it on
+search_params = params[:search]
+params.merge!(:search => nil)
+-%>
+
+<div id="luxury_search" style="display:none; text-align:left;">
+<%= luxury_search_form(:update_table, 'advanced') %>
+<table><tr><td>
+<table class="luxury_search">
+<thead>
+<th colspan=3>
+  <%= as_('Advanced Search') %>
+</th>
+</thead>
+<tbody>
+<% active_scaffold_config.luxury_search.columns.each do |column| -%>
+  <% next if column.column.type.to_s == 'binary' -%>
+  <tr class="form-element">
+    <th><label for="<%= "search_#{column.name}" %>"><%= column.label %></label></th>
+    <td><%= column.column.type.to_s %></td>
+    <td style="text-align:left;"><%= render :partial=>"luxury_search_field", :locals=>{:column=>column, :params=>search_params} %></td>
+  </tr>
+<% end -%>
+</tbody>
+</table>
+
+</td><td>
+<p class="form-footer">
+  <%= submit_tag as_('Search'), :class => "submit" %>
+  <a href="javascript:void(0)" class="cancel" onclick="f = this.up('form'); f.reset(); f.onsubmit();"><%= as_('Reset') -%></a>
+  <%= loading_indicator_tag(:action => :advanced) %>
+<% if show_dl_button -%>
+  <input type="button" value="Download" onclick="copy_sort_order('advanced'); this.form.action='<%= url_for(:action => 'download') %>'; this.form.submit();" />
+<% end -%>
+  <%= loading_indicator_tag(:action => :search) %>
+</p>
+</td></tr></table>
+<%= hidden_field_tag :sort_column %>
+<%= hidden_field_tag :sort_direction %>
+</form>
+
+<br clear="both">
+
+</div>

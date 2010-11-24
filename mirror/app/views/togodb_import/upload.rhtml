@@ -1,0 +1,56 @@
+<%- @message ||= as_("Upload file") -%>
+
+<!-- This should be included since it defines an SWFObject class needed for proper placing of Flash elements -->
+<%= javascript_include_tag 'uploader/SolmetraUploader' %>
+
+<div style="clear: both">
+<div align="center">
+
+<%= form_tag({}, :multipart=>true) %>
+  <!-- <label for="file"><%= as_("File") %>:</label> -->
+  <div id="solmetraUploaderPlaceholder_<%= @instance_id %>"><%= file_field_tag "file" %></div>
+
+<!-- Hidden form fields are used by Uploader JavaScript to control its behaviour -->
+<input type="hidden" name="solmetraUploaderInstance" value="<%= @instance_id %>" />
+<input type="hidden" id="solmetraUploaderData_<%= @instance_id %>" name="solmetraUploaderData[<%= @instance_id %>]" value="file_data" /> <!-- set value to form field name -->
+<input type="hidden" id="solmetraUploaderHijack_<%= @instance_id %>" value="y" /> <!-- set value to "y" if you want to "hijack" HTML form -->
+<input type="hidden" id="solmetraUploaderRequired_<%= @instance_id %>" value="y" /> <!-- set value to "y" to prevent form submission if this one is not set -->
+ 
+<!-- Here we create main object and set config parameters -->
+<script type="text/javascript">
+<!--
+   var so = new SWFObject("<%= url_for(:controller => 'uploader') + '/uploader.swf' %>", "solmetraUploaderMovie_<%= @instance_id %>", "500", "50", "8", "#ffffff");
+   so.useExpressInstall("expressinstall.swf");
+   so.addParam("allowScriptAccess", "always");
+   so.addParam("allowFullScreen", "false");
+   so.addVariable("language", "en");                     // [optional] language to use for textual prompts
+   so.addVariable("baseurl", "./");                      // [optional] will be applied to all eternal calls except uploadurl
+   so.addVariable("uploadurl", "<%= url_for :action => 'handle' %>");  // [optional] an url to post files to; relative to uploader.swf
+   so.addVariable("config", "<%= url_for(:controller => 'uploader') + '/import.xml' %>");     // [optional] path to front-end configuration file
+   so.addVariable("instance", "<%= @instance_id %>");    // instance id - should be unique
+   so.addVariable("allowed", "");
+   so.addVariable("disallowed", "php,php3,php4,php5");
+   so.addVariable("verifyupload", "true");
+   so.addVariable("configXml", "");
+   so.addVariable("maxsize", "5368709120");
+   so.addVariable("hijackForm", "yes");
+   so.addVariable("externalErrorHandler", "SolmetraUploader.broadcastError");
+   so.addVariable("externalEventHandler", "SolmetraUploader.broadcastEvent");
+   so.write("solmetraUploaderPlaceholder_<%= @instance_id %>");
+   solmetraUploaderMovie_<%= @instance_id %> = document.getElementById('solmetraUploaderMovie_<%= @instance_id %>');
+//-->
+</script>
+
+  <br />
+  <%= submit_tag as_("Upload") %>
+</p>
+</form>
+
+<br/>
+<br/>
+
+File must be in CSV (comma separated value) format.
+
+</div>
+</div>
+

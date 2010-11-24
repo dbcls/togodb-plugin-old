@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><%= as_("Import") %></title>
+<%= javascript_include_tag :defaults %>
+<%= active_scaffold_includes %>
+<%= stylesheet_link_tag "togodb/application.css" %>
+<%= stylesheet_link_tag "togodb/admin.css" %>
+<%= stylesheet_link_tag "togodb/import_galaxy.css" %>
+<!--[if lt IE 7]>
+<%= stylesheet_link_tag "togodb/ie7.css" %>
+<![endif]-->
+</head>
+
+<body>
+<div id="wrapper">
+ <div id="header">
+  <div class="logo">
+   <a href="/"><img src="/images/togodb/spacer.gif" width="220" height="47" border="0" /></a>
+  </div> <!-- logo -->
+ </div> <!-- header -->
+ <div id="contents">
+  <div id="main">
+   <div class="mainSpace">
+    <div style="text-align:right;"><%= login_information %></div>
+    <div id="message" class="popup">
+     <%= oneline_message(flash[:error], 'error') || oneline_message(flash[:notice],'notice') %>
+    </div>
+    <h2><%= @message %></h2>
+<%= yield %>
+   </div> <!-- mainSpace -->
+  </div> <!-- main -->
+  <div style="clear: both;"></div>
+ </div> <!-- contents -->
+ <div id="footer">
+ </div> <!-- footer -->
+</div> <!-- wrapper -->
+</body>
+</html>

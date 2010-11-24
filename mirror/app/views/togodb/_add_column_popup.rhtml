@@ -1,0 +1,14 @@
+<div id="add_column_popup" style="visibility: hidden; z-index: 1; position: absolute; left: 400px; top: 250px; padding: 20px; margin: 0px; border: 5px solid #C0C0FF; background-color: #FFFFFF">
+  <div id="message"></div>
+  <div align="center">
+<% form_remote_tag :url => {:controller => 'togodb', :action => 'add_column', :id => @record}, :update => 'column' do -%>
+    <table class="luxury_search">
+      <tr><th><%= as_("Name") %></th><td style="text-align: left;"><%= text_field :column, :name, :size => 50 %></td></tr>
+      <tr><th><%= as_("Type") %></th><td style="text-align: left;"><%= select_tag_for_add_column_type %></td></tr>
+      <tr><th><%= as_("Label") %></th><td style="text-align: left;"><%= text_field :column, :label, :size => 50 %></td></tr>
+    </table>
+    <%= submit_tag ' Add column ', :onclick => "if (!confirm('Add column ?')) return false; return true;" %>
+    <input id="close_column_popup_btn" type="button" value=" Cancel " style="margin-left:20px;"/>
+<% end -%>
+  </div>
+</div>
